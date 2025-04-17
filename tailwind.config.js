@@ -17,6 +17,10 @@ export default {
   theme: {
     extend: {
       colors: {
+        "base-pink": "#dc5263",
+        "base=pink-light": "#d26775",
+        "base-pink-dark": "#b03d4a",
+        "base-pink-lightest": "#e2a3aa",
         "base-dark": "#404040",
         "base-light": "#E2E2E2",
         main: "#AF0404",

@@ -1,6 +1,6 @@
 export default function Footer() {
   // Slogo (logo only in this JSON)
-  const slogoLogoSrc = "src/assets/react.svg";
+  const slogoLogoSrc = "/logos/Logo_NoBackground.png";
   const slogoLogoAlt = "Logo";
 
   // Nav links
@@ -24,15 +24,28 @@ export default function Footer() {
 
   // Contact info
   const contactItems = [
-    { text: "Mail: info.seyllc@gmail.com" },
+    { text: "Mail: info@twistomy.com" },
     { text: "Phone: +1 (234) 567-890" },
     {
       isLink: true,
-      link: "https://facebook.com/",
-      text: "Facebook",
+      link: "https://LinkedIn.com/",
+      text: "Connect with us on LinkedIn",
       icon: {
-        iconUrl: "/path/to/facebook-icon.png",
-        className: "w-4 h-4 mr-2",
+        iconUrl: "/logos/LI-In-Bug.png",
+        className: "w-5 h-4 mr-2",
+      },
+      customStyle: {
+        display: "flex",
+        direction: "flex-row",
+      },
+    },
+    {
+      isLink: true,
+      link: "https://youtube.com/",
+      text: "Visit the official Twistomy Channel",
+      icon: {
+        iconUrl: "/logos/yt_logo_mono_dark.png",
+        className: "w-20 h-4 mr-2",
       },
       customStyle: {
         display: "flex",

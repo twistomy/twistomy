@@ -1,27 +1,33 @@
+import HeroSection from "../../components/hero/HeroSection";
+import chevronDown from "/icons/arrows/chevron-down.svg";
+
 const Home = () => {
   return (
-    <main className="p-8 bg-white text-black">
+    <main className="bg-white text-black">
       {/* Hero Section */}
-      <section className="bg-gray-100 py-16">
-        <div className="mx-auto flex flex-col md:flex-row items-center">
-          <div className="text-center md:text-left md:w-1/2">
-            <h1 className="text-4xl font-bold mb-4">Welcome to Our Website</h1>
-            <p className="text-lg text-gray-600">
-              Your one-stop solution for all your needs.
-            </p>
-          </div>
-          <div className="md:w-1/2 mt-8 md:mt-0">
-            <img
-              className="w-full max-w-md mx-auto md:mx-0"
-              src="/path-to-your-hero-image.jpg"
-              alt="Hero"
-            />
-          </div>
+      <section className="bg-black text-white h-[93vh]">
+        <HeroSection />
+
+        {/* Bouncing Arrow */}
+        <div
+          className="absolute z-20 bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
+          onClick={() => {
+            const detailsSection = document.getElementById("details-section");
+            if (detailsSection) {
+              detailsSection.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
+        >
+          <img
+            src={chevronDown}
+            alt="Scroll Down"
+            className="animate-bounce w-10 h-10 cursor-pointer invert-[44%] sepia-[73%] saturate-[3210%] hue-rotate-[165deg] brightness-[99%] contrast-[109%]"
+          />
         </div>
       </section>
 
       {/* Details Section */}
-      <section className="py-16 bg-white">
+      <section id="details-section" className="py-16 bg-white">
         <div className="mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center">
             <img

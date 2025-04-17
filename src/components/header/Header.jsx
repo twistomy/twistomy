@@ -34,10 +34,14 @@ const Header = () => {
       {/* Logo + Identity */}
       <div className="flex items-center space-x-2">
         <a href="/home">
-          <img src="/src/assets/react.svg" alt="Logo" className="h-12 w-auto" />
+          <img
+            src="/logos/SmallerLogo.PNG"
+            alt="Logo"
+            className="h-12 w-auto"
+          />
         </a>
         <a href="/home" className="flex flex-col leading-tight">
-          <span className="font-semibold text-xl">Name</span>
+          <span className="font-semibold text-xl">Twistomy</span>
           <span className="text-sm text-gray-500">Slogan</span>
         </a>
       </div>
