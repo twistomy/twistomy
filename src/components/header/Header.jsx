@@ -23,14 +23,14 @@ const Header = () => {
 
   const navLinks = [
     { text: "Home", link: "/" },
-    { text: "About", link: "/about" },
+    // { text: "About", link: "/about" },
     { text: "Team", link: "/team" },
     { text: "FAQ", link: "/faq" },
     { text: "Contact", link: "/contact" },
   ];
 
   return (
-    <header className="sticky top-0 w-full z-20 flex items-center justify-between px-4 py-2 bg-white shadow text-black">
+    <header className="sticky top-0 w-full z-40 flex items-center justify-between px-4 py-2 bg-white shadow text-black">
       {/* Logo + Identity */}
       <div className="flex items-center space-x-2">
         <a href="/home">

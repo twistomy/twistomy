@@ -1,5 +1,6 @@
 import HeroSection from "../../components/hero/HeroSection";
 import chevronDown from "/icons/arrows/chevron-down.svg";
+import TwistomyGenCapWafer from "../../assets/pictures/Twistomy_gen_cap_wafer.png"; // Adjust the path as necessary
 
 const Home = () => {
   return (
@@ -28,37 +29,27 @@ const Home = () => {
 
       {/* Details Section */}
       <section id="details-section" className="py-16 bg-white">
-        <div className="mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="text-center">
-            <img
-              className="w-full h-48 object-cover mb-4"
-              src="/path-to-detail-image1.jpg"
-              alt="Detail 1"
-            />
-            <p className="text-gray-700">
-              Detail 1: Description about the first detail.
+        <div className="justify-center items-center flex flex-col md:flex-row md:space-x-8">
+          <div>
+            <h2 className="text-3xl font-bold mb-4">About Twistomy</h2>
+            <p className="text-lg text-gray-700 mb-4">
+              Twistomy was created by biomedical engineers Devon Horton (B.S),
+              Lily Williams (B.S), and Danielle Piper (B.S) in collaboration
+              with GI professionals Dr. Steven Moulton (M.D.) and Sara Fidanza
+              (CNS-BC, CPNP-BC) from Children’s Hospital Colorado (CHCO) who
+              were frustrated with the burdens of current ostomy care solutions
+              for adult and pediatric ostomy patients and the lack of
+              improvement in the ostomy care space. Together, through the
+              University of Colorado Denver’s Senior Capstone Program, they
+              developed Twistomy, a continent ostomy device that has the
+              potential to revolutionize the current standard of ostomy care.
             </p>
           </div>
-          <div className="text-center">
-            <img
-              className="w-full h-48 object-cover mb-4"
-              src="/path-to-detail-image2.jpg"
-              alt="Detail 2"
-            />
-            <p className="text-gray-700">
-              Detail 2: Description about the second detail.
-            </p>
-          </div>
-          <div className="text-center">
-            <img
-              className="w-full h-48 object-cover mb-4"
-              src="/path-to-detail-image3.jpg"
-              alt="Detail 3"
-            />
-            <p className="text-gray-700">
-              Detail 3: Description about the third detail.
-            </p>
-          </div>
+          <img
+            className="w-1/2 object-cover mb-4"
+            src={TwistomyGenCapWafer}
+            alt="Detail 1"
+          />
         </div>
       </section>
     </main>

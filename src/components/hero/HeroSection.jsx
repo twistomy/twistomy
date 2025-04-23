@@ -234,6 +234,175 @@
 //   );
 // }
 
+// import React, { useEffect, useRef, useState } from "react";
+// import * as THREE from "three";
+// import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+
+// export default function HeroSection() {
+//   const containerRef = useRef(null);
+
+//   /* refs */
+//   const mixerRef = useRef(null);
+//   const actionsRef = useRef([]); // every part’s action
+//   const rootRef = useRef(null);
+//   const clock = useRef(new THREE.Clock());
+
+//   /* UI */
+//   const [isExploded, setIsExploded] = useState(false);
+//   const [loaded, setLoaded] = useState(false);
+
+//   /* -------------------------------------------------- */
+//   /*  scene setup                                       */
+//   /* -------------------------------------------------- */
+//   useEffect(() => {
+//     const scene = new THREE.Scene();
+//     scene.background = new THREE.Color("black");
+
+//     const container = containerRef.current;
+//     const camera = new THREE.PerspectiveCamera(
+//       45,
+//       container.clientWidth / container.clientHeight,
+//       0.1,
+//       1000
+//     );
+//     camera.position.set(-0.1, 0.5, 3.5);
+//     camera.lookAt(-0.1, 0, 0);
+
+//     const renderer = new THREE.WebGLRenderer({ antialias: true });
+//     renderer.shadowMap.enabled = true;
+//     renderer.setSize(container.clientWidth, container.clientHeight);
+//     container.appendChild(renderer.domElement);
+
+//     /* spotlight + floor (unchanged) */
+//     const spot = new THREE.SpotLight(0xffffff, 2);
+//     spot.position.set(0, 2, 1);
+//     spot.angle = Math.PI / 4;
+//     spot.penumbra = 0.3;
+//     spot.decay = 2;
+//     spot.distance = 20;
+//     spot.castShadow = true;
+//     scene.add(spot);
+//     spot.target.position.set(0, 0, 0);
+//     scene.add(spot.target);
+
+//     const floor = new THREE.Mesh(
+//       new THREE.PlaneGeometry(20, 20),
+//       new THREE.MeshPhongMaterial({ color: 0x333333 })
+//     );
+//     floor.receiveShadow = true;
+//     floor.rotation.x = -Math.PI / 2;
+//     floor.position.y = -0.3;
+//     scene.add(floor);
+
+//     /* load GLB */
+//     new GLTFLoader().load("/model/continent_animated.glb", (gltf) => {
+//       const root = gltf.scene;
+//       root.scale.setScalar(0.1);
+//       scene.add(root);
+//       rootRef.current = root;
+
+//       /* mixer + a clipAction for every animation */
+//       const mixer = new THREE.AnimationMixer(root);
+//       mixerRef.current = mixer;
+
+//       actionsRef.current = gltf.animations.map((clip) => {
+//         const act = mixer.clipAction(clip);
+//         act.clampWhenFinished = true;
+//         act.setLoop(THREE.LoopOnce);
+//         act.play(); // move to frame 0
+//         act.paused = true; // freeze assembled
+//         return act;
+//       });
+
+//       setLoaded(true);
+//     });
+
+//     /* resize */
+//     const onResize = () => {
+//       camera.aspect = container.clientWidth / container.clientHeight;
+//       camera.updateProjectionMatrix();
+//       renderer.setSize(container.clientWidth, container.clientHeight);
+//     };
+//     window.addEventListener("resize", onResize);
+
+//     /* render loop */
+//     let raf;
+//     const animate = () => {
+//       raf = requestAnimationFrame(animate);
+
+//       const dt = clock.current.getDelta();
+//       if (mixerRef.current) mixerRef.current.update(dt);
+
+//       /* constant idle spin */
+//       if (rootRef.current) {
+//         rootRef.current.rotation.y += 0.3 * dt; // rad/sec
+//       }
+
+//       renderer.render(scene, camera);
+//     };
+//     animate();
+
+//     return () => {
+//       cancelAnimationFrame(raf);
+//       window.removeEventListener("resize", onResize);
+//       renderer.dispose();
+//       container.removeChild(renderer.domElement);
+//     };
+//   }, []);
+
+//   /* -------------------------------------------------- */
+//   /*  explode / assemble                                */
+//   /* -------------------------------------------------- */
+//   const toggleExplode = () => {
+//     if (!actionsRef.current.length) return;
+
+//     actionsRef.current.forEach((act) => {
+//       const dur = act.getClip().duration;
+//       if (!isExploded) {
+//         /* forward: assembled ➜ exploded */
+//         act.timeScale = 1;
+//         act.reset(); // start at 0
+//       } else {
+//         /* reverse: exploded ➜ assembled */
+//         act.timeScale = -1;
+//         if (act.time === 0) act.time = dur; // start at end
+//       }
+//       act.paused = false; // play
+//     });
+
+//     setIsExploded((p) => !p);
+//   };
+
+//   /* ------------------------------------------------------------- */
+//   /*  JSX                                                          */
+//   /* ------------------------------------------------------------- */
+//   return (
+//     <div className="relative w-full h-full">
+//       {/* Left side text */}
+//       <div className="absolute z-10 flex flex-col md:w-1/2 h-full justify-between md:justify-center text-center md:text-left py-20 md:left-10">
+//         <h1 className="text-5xl font-bold mb-4 text-base-pink">Twistomy</h1>
+//         <p className="text-xl">
+//           You put it in yout body and it does really cool stuff for people who
+//           need it. Oh yeah, its also super simple and easy to use. I mean, cmon,
+//           its obvious this thing rocks. Call us right now and get your inestine
+//           valve today!
+//         </p>
+//       </div>
+
+//       <div ref={containerRef} className="w-full h-full" />
+
+//       {loaded && (
+//         <button
+//           onClick={toggleExplode}
+//           className="absolute top-6 right-6 bg-base-pink text-white px-4 py-2 rounded"
+//         >
+//           {isExploded ? "Assemble" : "Explode"}
+//         </button>
+//       )}
+//     </div>
+//   );
+// }
+
 import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
@@ -241,18 +410,20 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 export default function HeroSection() {
   const containerRef = useRef(null);
 
-  /* refs */
+  /* Three.js refs */
   const mixerRef = useRef(null);
-  const actionsRef = useRef([]); // every part’s action
-  const rootRef = useRef(null);
+  const actionsRef = useRef([]); // every clip action
+  const rootRef = useRef(null); // model root
   const clock = useRef(new THREE.Clock());
 
-  /* UI */
-  const [isExploded, setIsExploded] = useState(false);
+  /* hover state (imperative) */
+  const explodedRef = useRef(false);
+
+  /* React state just for initial button visibility (optional) */
   const [loaded, setLoaded] = useState(false);
 
   /* -------------------------------------------------- */
-  /*  scene setup                                       */
+  /* scene setup                                        */
   /* -------------------------------------------------- */
   useEffect(() => {
     const scene = new THREE.Scene();
@@ -265,28 +436,42 @@ export default function HeroSection() {
       0.1,
       1000
     );
-    camera.position.set(-0.1, 0.5, 3.5);
-    camera.lookAt(-0.1, 0, 0);
+    camera.position.set(1, 0.5, 3);
+    camera.lookAt(-1, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
 
-    /* spotlight + floor (unchanged) */
-    const spot = new THREE.SpotLight(0xffffff, 2);
-    spot.position.set(0, 2, 1);
-    spot.angle = Math.PI / 4;
+    /* spotlight 1*/
+    const spot = new THREE.SpotLight(0xffffff, 3);
+    spot.position.set(0, 2, 0);
+    spot.angle = Math.PI / 3;
     spot.penumbra = 0.3;
-    spot.decay = 2;
+    spot.decay = 1;
     spot.distance = 20;
     spot.castShadow = true;
     scene.add(spot);
     spot.target.position.set(0, 0, 0);
     scene.add(spot.target);
 
+    /* spotlight 2*/
+    const spot2 = new THREE.SpotLight(0xffffff, 3);
+    spot2.position.set(0, 2, 1);
+    spot2.angle = Math.PI / 4;
+    spot2.penumbra = 0.3;
+    spot2.decay = 2;
+    spot2.distance = 20;
+    spot2.castShadow = false; // no shadow
+    scene.add(spot2);
+    spot2.target.position.set(0, 0, 0);
+    scene.add(spot2.target);
+
+    /* floor */
     const floor = new THREE.Mesh(
-      new THREE.PlaneGeometry(20, 20),
+      new THREE.PlaneGeometry(10, 10),
       new THREE.MeshPhongMaterial({ color: 0x333333 })
     );
     floor.receiveShadow = true;
@@ -294,24 +479,29 @@ export default function HeroSection() {
     floor.position.y = -0.3;
     scene.add(floor);
 
-    /* load GLB */
+    /* load GLB with many clips */
     new GLTFLoader().load("/model/continent_animated.glb", (gltf) => {
       const root = gltf.scene;
       root.scale.setScalar(0.1);
+      root.traverse((m) => {
+        if (m.isMesh) {
+          m.castShadow = true;
+          m.receiveShadow = true;
+        }
+      });
       scene.add(root);
       rootRef.current = root;
 
-      /* mixer + a clipAction for every animation */
       const mixer = new THREE.AnimationMixer(root);
       mixerRef.current = mixer;
 
       actionsRef.current = gltf.animations.map((clip) => {
-        const act = mixer.clipAction(clip);
-        act.clampWhenFinished = true;
-        act.setLoop(THREE.LoopOnce);
-        act.play(); // move to frame 0
-        act.paused = true; // freeze assembled
-        return act;
+        const a = mixer.clipAction(clip);
+        a.clampWhenFinished = true;
+        a.setLoop(THREE.LoopOnce);
+        a.play(); // move to frame_0
+        a.paused = true; // keep model assembled
+        return a;
       });
 
       setLoaded(true);
@@ -325,6 +515,35 @@ export default function HeroSection() {
     };
     window.addEventListener("resize", onResize);
 
+    /* pointer‑move tilt */
+    const targetRot = { x: 0, y: 0 };
+    const onMove = (e) => {
+      const rect = container.getBoundingClientRect();
+      const nx = (e.clientX - rect.left) / rect.width - 0.5;
+      const ny = (e.clientY - rect.top) / rect.height - 0.5;
+      targetRot.x = -ny * 0.2; // max 0.2 rad up/down (chatGPT going brazy)
+      targetRot.y = nx * 0.4; // max 0.4 rad left/right (chatGPT going brazy)
+    };
+
+    const playDir = (dir /* +1 explode, ‑1 assemble */) => {
+      actionsRef.current.forEach((a) => {
+        a.timeScale = dir; // just flip direction
+        a.paused = false; // ensure playing
+      });
+      explodedRef.current = dir === 1;
+    };
+
+    const onEnter = () => {
+      if (!explodedRef.current) playDir(+1);
+    };
+    const onLeave = () => {
+      if (explodedRef.current) playDir(-1);
+    };
+
+    container.addEventListener("pointerover", onEnter);
+    container.addEventListener("pointerout", onLeave);
+    container.addEventListener("pointermove", onMove);
+
     /* render loop */
     let raf;
     const animate = () => {
@@ -333,45 +552,34 @@ export default function HeroSection() {
       const dt = clock.current.getDelta();
       if (mixerRef.current) mixerRef.current.update(dt);
 
-      /* constant idle spin */
       if (rootRef.current) {
-        rootRef.current.rotation.y += 0.3 * dt; // rad/sec
+        rootRef.current.rotation.x = THREE.MathUtils.lerp(
+          rootRef.current.rotation.x,
+          targetRot.x,
+          0.1
+        );
+        rootRef.current.rotation.y = THREE.MathUtils.lerp(
+          rootRef.current.rotation.y,
+          targetRot.y,
+          0.1
+        );
       }
 
       renderer.render(scene, camera);
     };
     animate();
 
+    /* cleanup */
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", onResize);
+      container.removeEventListener("pointerover", onEnter);
+      container.removeEventListener("pointerout", onLeave);
+      container.removeEventListener("pointermove", onMove);
       renderer.dispose();
       container.removeChild(renderer.domElement);
     };
   }, []);
-
-  /* -------------------------------------------------- */
-  /*  explode / assemble                                */
-  /* -------------------------------------------------- */
-  const toggleExplode = () => {
-    if (!actionsRef.current.length) return;
-
-    actionsRef.current.forEach((act) => {
-      const dur = act.getClip().duration;
-      if (!isExploded) {
-        /* forward: assembled ➜ exploded */
-        act.timeScale = 1;
-        act.reset(); // start at 0
-      } else {
-        /* reverse: exploded ➜ assembled */
-        act.timeScale = -1;
-        if (act.time === 0) act.time = dur; // start at end
-      }
-      act.paused = false; // play
-    });
-
-    setIsExploded((p) => !p);
-  };
 
   /* ------------------------------------------------------------- */
   /*  JSX                                                          */
@@ -390,15 +598,6 @@ export default function HeroSection() {
       </div>
 
       <div ref={containerRef} className="w-full h-full" />
-
-      {loaded && (
-        <button
-          onClick={toggleExplode}
-          className="absolute top-6 right-6 bg-base-pink text-white px-4 py-2 rounded"
-        >
-          {isExploded ? "Assemble" : "Explode"}
-        </button>
-      )}
     </div>
   );
 }
