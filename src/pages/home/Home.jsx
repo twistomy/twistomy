@@ -1,6 +1,7 @@
 import HeroSection from "../../components/hero/HeroSection";
 import chevronDown from "/icons/arrows/chevron-down.svg";
 import TwistomyGenCapWafer from "../../assets/pictures/Twistomy_gen_cap_wafer.png"; // Adjust the path as necessary
+import ContentWithImage from "../../components/contentWithImage/ContentWithImage";
 
 const Home = () => {
   return (
@@ -52,6 +53,37 @@ const Home = () => {
           />
         </div>
       </section>
+
+      <ContentWithImage
+        imageSrc={TwistomyGenCapWafer}
+        imageAlt="Twistomy Gen Cap Wafer"
+        content={[
+          { type: "header", text: "Twistomy Gen Cap Wafer" },
+          {
+            type: "paragraph",
+            text: "The Twistomy Gen Cap Wafer is a revolutionary device designed to improve the quality of life for ostomy patients. It offers a secure and comfortable fit, reducing leaks and skin irritation.",
+          },
+        ]}
+        imageOnLeft={false}
+        containerStyle="px-6 md:px-12"
+        imageStyle="rounded-lg shadow-lg"
+        textStyle="text-center md:text-left"
+      />
+      <ContentWithImage
+        imageSrc={TwistomyGenCapWafer}
+        imageAlt="Twistomy Gen Cap Wafer"
+        content={[
+          { type: "header", text: "Features" },
+          {
+            type: "paragraph",
+            text: "The Twistomy Gen Cap Wafer features a unique design that allows for easy application and removal, making it user-friendly for patients of all ages.",
+          },
+        ]}
+        imageOnLeft={true}
+        containerStyle="px-6 md:px-12"
+        imageStyle="rounded-lg shadow-lg"
+        textStyle="text-center md:text-left"
+      />
     </main>
   );
 };
