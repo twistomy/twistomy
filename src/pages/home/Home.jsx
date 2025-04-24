@@ -2,6 +2,7 @@ import HeroSection from "../../components/hero/HeroSection";
 import chevronDown from "/icons/arrows/chevron-down.svg";
 import TwistomyGenCapWafer from "../../assets/pictures/Twistomy_gen_cap_wafer.png"; // Adjust the path as necessary
 import ContentWithImage from "../../components/contentWithImage/ContentWithImage";
+import SectionDivider from "../../components/sectionDivider/sectionDivider";
 
 const Home = () => {
   return (
@@ -27,63 +28,49 @@ const Home = () => {
           />
         </div>
       </section>
+      <SectionDivider text="About Us" />
 
-      {/* Details Section */}
-      <section id="details-section" className="py-16 bg-white">
-        <div className="justify-center items-center flex flex-col md:flex-row md:space-x-8">
-          <div>
-            <h2 className="text-3xl font-bold mb-4">About Twistomy</h2>
-            <p className="text-lg text-gray-700 mb-4">
-              Twistomy was created by biomedical engineers Devon Horton (B.S),
-              Lily Williams (B.S), and Danielle Piper (B.S) in collaboration
-              with GI professionals Dr. Steven Moulton (M.D.) and Sara Fidanza
-              (CNS-BC, CPNP-BC) from Children’s Hospital Colorado (CHCO) who
-              were frustrated with the burdens of current ostomy care solutions
-              for adult and pediatric ostomy patients and the lack of
-              improvement in the ostomy care space. Together, through the
-              University of Colorado Denver’s Senior Capstone Program, they
-              developed Twistomy, a continent ostomy device that has the
-              potential to revolutionize the current standard of ostomy care.
-            </p>
-          </div>
-          <img
-            className="w-1/2 object-cover mb-4"
-            src={TwistomyGenCapWafer}
-            alt="Detail 1"
-          />
-        </div>
-      </section>
+      <div id="details-section">
+        {/* Details Section */}
+        <ContentWithImage
+          imageSrc={TwistomyGenCapWafer}
+          /*
+          [Primary Photo of the Device should be somewhere toward the top of site here (photo labeled: twistomy cap and wafer photo) *VRML file of same photo labeled “continent assembly collapsed” has also been added to google drive for cooler shadow animation that you wanted to do]
+          */
+          imageAlt="About Twistomy™"
+          content={[
+            { type: "header", text: "About Twistomy™" },
+            {
+              type: "paragraph",
+              text: "Twistomy was created by biomedical engineers Devon Horton (B.S), Lily Williams (B.S), and Danielle Piper (B.S) in collaboration with GI professionals Dr. Steven Moulton (M.D.) and Sara Fidanza (CNS-BC, CPNP-BC) from Children’s Hospital Colorado (CHCO) who were frustrated with the burdens of current ostomy care solutions for adult and pediatric ostomy patients and the lack of improvement in the ostomy care space. Together, through the University of Colorado Denver’s Senior Capstone Program, they developed Twistomy, a continent ostomy device that has the potential to revolutionize the current standard of ostomy care.",
+            },
+          ]}
+          imageOnLeft={true}
+          containerStyle="px-6 md:px-12"
+          imageStyle="rounded-lg shadow-lg"
+          textStyle="text-center md:text-left"
+        />
 
-      <ContentWithImage
-        imageSrc={TwistomyGenCapWafer}
-        imageAlt="Twistomy Gen Cap Wafer"
-        content={[
-          { type: "header", text: "Twistomy Gen Cap Wafer" },
-          {
-            type: "paragraph",
-            text: "The Twistomy Gen Cap Wafer is a revolutionary device designed to improve the quality of life for ostomy patients. It offers a secure and comfortable fit, reducing leaks and skin irritation.",
-          },
-        ]}
-        imageOnLeft={false}
-        containerStyle="px-6 md:px-12"
-        imageStyle="rounded-lg shadow-lg"
-        textStyle="text-center md:text-left"
-      />
-      <ContentWithImage
-        imageSrc={TwistomyGenCapWafer}
-        imageAlt="Twistomy Gen Cap Wafer"
-        content={[
-          { type: "header", text: "Features" },
-          {
-            type: "paragraph",
-            text: "The Twistomy Gen Cap Wafer features a unique design that allows for easy application and removal, making it user-friendly for patients of all ages.",
-          },
-        ]}
-        imageOnLeft={true}
-        containerStyle="px-6 md:px-12"
-        imageStyle="rounded-lg shadow-lg"
-        textStyle="text-center md:text-left"
-      />
+        <ContentWithImage
+          imageSrc={TwistomyGenCapWafer}
+          /*
+          [Insert “Ostomy Pouch Cleaning” Video in Drive somewhere near this problem blurb if possible]
+          */
+          imageAlt="The Problem"
+          content={[
+            { type: "header", text: "The Problem" },
+            {
+              type: "paragraph",
+              text: "An ostomy is an external facing, surgically diverted segment of small or large bowel created by a surgeon that results in the formation of a temporary or permanent stoma. Stoma output is managed with an obtrusive ostomy pouch system, composed of a peristomal wafer with an adhesive backing and a heavy-duty plastic bag to collect fecal material. Nearly 70% of ostomy patients experience leakage from underneath the wafer, resulting in malodor, embarrassment, and peristomal skin complications.  Peristomal skin complications result in frequent hospital visits, longer stays, and higher readmission rates. Pouching systems also produce unsolicited noise, malodor, and pose significant psychosocial challenges often leading to social isolation, depression in nearly half, and reduced quality of life.",
+            },
+          ]}
+          imageOnLeft={false}
+          containerStyle="px-6 md:px-12"
+          imageStyle="rounded-lg shadow-lg"
+          textStyle="text-center md:text-left"
+        />
+      </div>
+      <SectionDivider text="About Us" />
     </main>
   );
 };
