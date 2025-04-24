@@ -1,39 +1,47 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 const ContentWithImage = ({
   imageSrc,
   imageAlt = "",
   imageOnLeft = false,
-  content = [], // array of objects: { type: 'header' | 'subheader' | 'paragraph', text: string }
+  content = [],
   containerStyle = "",
   imageStyle = "",
   textStyle = "",
 }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  const imageControls = useAnimation();
+  const textControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      imageControls.start({ x: 0, opacity: 1, transition: { duration: 0.8 } });
+      textControls.start({ x: 0, opacity: 1, transition: { duration: 0.8 } });
+    }
+  }, [isInView]);
+
   const renderContent = () =>
     content.map((item, index) => {
       switch (item.type) {
         case "header":
           return (
-            <h2 key={index} className="text-4xl font-bold mb-4 leading-snug">
+            <h2 key={index} className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight text-gray-900">
               {item.text}
             </h2>
           );
         case "subheader":
           return (
-            <h3
-              key={index}
-              className="text-2xl font-semibold mb-3 leading-snug"
-            >
+            <h3 key={index} className="text-xl md:text-2xl font-semibold mb-3 leading-snug text-gray-800">
               {item.text}
             </h3>
           );
         case "paragraph":
           return (
-            <p
-              key={index}
-              className="text-lg text-gray-700 mb-4 leading-relaxed"
-            >
+            <p key={index} className="text-base md:text-lg text-gray-700 mb-4 leading-relaxed">
               {item.text}
             </p>
           );
@@ -42,26 +50,45 @@ const ContentWithImage = ({
       }
     });
 
+  const imageInitial = { x: imageOnLeft ? "100vw" : "-100vw", opacity: 0 };
+  const textInitial = { x: imageOnLeft ? "-100vw" : "100vw", opacity: 0 };
+
   return (
-    <section className={`py-16 px-6 md:px-12 bg-white ${containerStyle}`}>
+    <section
+      ref={ref}
+      className={`py-20 px-6 md:px-16 bg-white overflow-hidden ${containerStyle}`}
+    >
       <div
-        className={`flex flex-col ${
-          imageOnLeft ? "md:flex-row-reverse" : "md:flex-row"
-        } items-center justify-center md:space-x-8`}
+        className={`flex flex-col md:flex-row items-center justify-between gap-10 md:gap-14 ${
+          imageOnLeft ? "md:flex-row-reverse" : ""
+        }`}
       >
-        {imageSrc && (
+        {/* Image */}
+        <motion.div
+          initial={imageInitial}
+          animate={imageControls}
+          className="w-full md:w-[44%]"
+        >
           <img
             src={imageSrc}
             alt={imageAlt}
-            className={`w-full md:w-1/2 object-cover rounded-2xl shadow-lg mb-6 md:mb-0 ${imageStyle}`}
+            className={`w-full object-cover rounded-2xl ${imageStyle}`}
           />
-        )}
+        </motion.div>
 
-        {content.length > 0 && (
-          <div className={`max-w-xl text-center md:text-left ${textStyle}`}>
+        {/* Text Box */}
+        <motion.div
+          initial={textInitial}
+          animate={textControls}
+          className={`w-full md:w-[48%] ${textStyle}`}
+        >
+          <div
+            style={{ backgroundColor: '#F5F5F5' }}
+            className="border border-gray-200 rounded-xl p-8"
+          >
             {renderContent()}
           </div>
-        )}
+        </motion.div>
       </div>
     </section>
   );
