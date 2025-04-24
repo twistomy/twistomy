@@ -69,8 +69,101 @@ const Home = () => {
           imageStyle="rounded-lg shadow-lg"
           textStyle="text-center md:text-left"
         />
-      </div>
-      <SectionDivider text="About Us" />
+        <SectionDivider text="Tab 2" />
+        <ContentWithImage
+          imageSrc={TwistomyGenCapWafer}
+          /*
+            NO IMAGE INFO ON DOC
+          */
+          imageAlt="The Twistomy™ Solution"
+          content={[
+            { type: "header", text: "The Twistomy™ Solution" },
+            {
+              type: "paragraph",
+              text: "As a team, we set out to address the challenges associated with current ostomy pouch systems and have developed Twistomy™, an innovative, minimally invasive continent device designed to give ostomy patients control over their fecal output, minimize leakage, odor, and noises, and significantly improve quality of life.",
+            },
+          ]}
+          imageOnLeft={true}
+          containerStyle="px-6 md:px-12"
+          imageStyle="rounded-lg shadow-lg"
+          textStyle="text-center md:text-left"
+        />
+        <ContentWithImage
+          imageSrc={TwistomyGenCapWafer}
+          /*
+            [Insert “Continent Assembly Exploded View” Photo here with Arrows to Parts as seen below]
+            [Insert “Twisted” photo here with arrows to parts as seen below]
+          */
+          imageAlt="Core Features"
+          content={[
+            { type: "header", text: "Core Features" },
+            {
+              type: "paragraph",
+              text: "The device is composed of a soft flexible inner ring and twistable thin plastic sleeve that sit within the stoma channeling waste. The low-profile external housing unit twists the conduit shut to prevent leakage and odor escape until the user decides to untwist it for excretion.",
+            },
+          ]}
+          imageOnLeft={false}
+          containerStyle="px-6 md:px-12"
+          imageStyle="rounded-lg shadow-lg"
+          textStyle="text-center md:text-left"
+        />
+        <ContentWithImage
+          imageSrc={TwistomyGenCapWafer}
+          /*
+            [Insert “excretory assembly collapsed” photo here with labels as seen in the diagram above]
+          */
+          imageAlt="Seamless Integration & User Control"
+          content={[
+            { type: "header", text: "Seamless Integration & User Control" },
+            {
+              type: "paragraph",
+              text: "The low-profile external housing unit attaches to standard stoma wafer using a compatible “clip-on” mechanism. When it is time to evacuate one’s stoma, a user attaches an ostomy pouch to the housing unit and untwists the conduit, opening the channel for fecal output in a controlled and effective manner. When finished, a user twists the conduit closed, discards the ostomy pouch, and recaps the housing unit.",
+            },
+          ]}
+          imageOnLeft={true}
+          containerStyle="px-6 md:px-12"
+          imageStyle="rounded-lg shadow-lg"
+          textStyle="text-center md:text-left"
+        />
+        <SectionDivider text="Tab 3" />
+        <ContentWithImage
+          imageSrc={TwistomyGenCapWafer}
+          /*
+            [Insert “Table” png here]
+          */
+          imageAlt="What makes Twistomy™ different?"
+          content={[
+            { type: "header", text: "What makes Twistomy™ different?" },
+            {
+              type: "paragraph",
+              text: "Traditional pouching systems fail to address the key challenges in the ostomy care space. Current ostomy care suppliers own and offer variations of the traditional wafer and pouch system—differing in shape, size, and style—but none address the core physical, emotional, and social issues.",
+            },
+          ]}
+          imageOnLeft={true}
+          containerStyle="px-6 md:px-12"
+          imageStyle="rounded-lg shadow-lg"
+          textStyle="text-center md:text-left"
+        />
+        <ContentWithImage
+          imageSrc={TwistomyGenCapWafer}
+          /*
+            [Insert “Continent Assembly Exploded View” Photo here with Arrows to Parts as seen below]
+            [Insert “Twisted” photo here with arrows to parts as seen below]
+          */
+          imageAlt="Why Twistomy™?"
+          content={[
+            { type: "header", text: "Why Twistomy™?" },
+            {
+              type: "paragraph",
+              text: "At Twistomy, we believe no one should have to choose between a medical necessity and their sense of dignity. By reducing bulk by over half, Twistomy offers a discreet, leak- and odor-resistant alternative that minimizes complications and empowers ostomy patients to regain control, confidence, and quality of life.",
+            },
+          ]}
+          imageOnLeft={false}
+          containerStyle="px-6 md:px-12"
+          imageStyle="rounded-lg shadow-lg"
+          textStyle="text-center md:text-left"
+        />
+      </div>    
     </main>
   );
 };
