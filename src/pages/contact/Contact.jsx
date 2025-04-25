@@ -42,7 +42,7 @@ const Contact = () => {
     return <p className="text-green-500">Message sent. Thank you!</p>;
 
   return (
-    <main className="min-h-screen content-center bg-white text-black p-5 text-center">
+    <main className="min-h-screen content-center bg-white dark:bg-gray-900 text-black p-5 text-center">
       {/* Hero Section */}
       <section className="text-center mb-8">
         <h1 className="text-6xl md:text-3xl font-bold">Contact Us</h1>

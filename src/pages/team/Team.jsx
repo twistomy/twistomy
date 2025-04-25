@@ -41,17 +41,17 @@ const teamMembers = [
 
 const Team = () => {
   return (
-    <div className="px-4 py-12 md:py-20 bg-gray-50">
-      <div className="max-w-5xl mx-auto text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          Meet the Team
-        </h2>
-        <p className="text-lg text-gray-600">
-          The passionate professionals behind Twistomy — dedicated to
-          transforming ostomy care through innovation and compassion.
-        </p>
-      </div>
-
+    // <div className="px-4 py-12 md:py-20 bg-gray-50">
+    //   <div className="max-w-5xl mx-auto text-center mb-12">
+    //     <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+    //       Meet the Team
+    //     </h2>
+    //     <p className="text-lg text-gray-600">
+    //       The passionate professionals behind Twistomy — dedicated to
+    //       transforming ostomy care through innovation and compassion.
+    //     </p>
+    //   </div>
+    <div>
       <HeadShotWithText members={teamMembers} />
     </div>
   );

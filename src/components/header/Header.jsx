@@ -5,10 +5,12 @@ import { useState } from "react";
 import { IconButton } from "@mui/material";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import { useLocation } from "react-router-dom"; // ✅ Used to detect active route
 
 const Header = ({ darkMode, setDarkMode }) => {
   //   const [user, setUser] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const location = useLocation();
   //   const navigate = useNavigate();
 
   //   useEffect(() => {
@@ -61,15 +63,20 @@ const Header = ({ darkMode, setDarkMode }) => {
 
       {/* Desktop Nav Links */}
       <nav className="hidden md:flex gap-4 items-center">
-        {navLinks.map((item, i) => (
-          <a
-            key={i}
-            href={item.link}
-            className="px-3 py-2 text-sm font-medium hover:text-blue-600 dark:hover:text-blue-400"
-          >
-            {item.text}
-          </a>
-        ))}
+        {navLinks.map((item, i) => {
+          const isActive = location.pathname === item.link;
+          return (
+            <a
+              key={i}
+              href={item.link}
+              className={`px-3 py-2 text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${
+                isActive ? "text-base-pink font-bold" : ""
+              }`}
+            >
+              {item.text}
+            </a>
+          );
+        })}
 
         {/* Dark mode toggle */}
         <IconButton
