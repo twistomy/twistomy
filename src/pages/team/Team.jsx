@@ -1,23 +1,45 @@
-const Team = () => {
-  const teamMembers = [
-    { id: 1, name: "John Johnson", role: "Project Manager" },
-    { id: 2, name: "Bob Bobbinson", role: "Frontend Developer" },
-    { id: 3, name: "Charlie Charlison", role: "Backend Developer" },
-    { id: 4, name: "Mary Maryson", role: "UI/UX Designer" },
-  ];
+import React from 'react';
+import HeadShotWithText from '../../components/headShotWithText/headShotWithText';
+import TwistomyGenCapWafer from '../../assets/pictures/Twistomy_gen_cap_wafer.png'
 
+const teamMembers = [
+  {
+    imageSrc: TwistomyGenCapWafer,
+    name: 'Steven L. Moulton, MD',
+    role: 'Professor of Surgery',
+    bio: 'Department of Surgery, University of Colorado School of Medicine and Children’s Hospital Colorado',
+  },
+  {
+    imageSrc: TwistomyGenCapWafer,
+    name: 'Sara Fidanza, CNS-BC, CPNP-PC',
+    role: 'Pediatric Nurse Practitioner',
+    bio: 'Department of GI, University of Colorado Anschutz Medical Campus',
+  },
+  {
+    imageSrc: TwistomyGenCapWafer,
+    name: 'Lily Williams, BS',
+    role: 'Bioengineer',
+    bio: 'Department of Surgery, University of Colorado Anschutz Medical Campus',
+  },
+  {
+    imageSrc: TwistomyGenCapWafer,
+    name: 'Devon Horton, BS',
+    role: 'Senior Bioengineer',
+    bio: 'Department of Surgery, University of Colorado Anschutz Medical Campus',
+  },
+  {
+    imageSrc: TwistomyGenCapWafer,
+    name: 'Michael Pizzalato, MBA, MS',
+    role: 'Financial Consultant',
+    bio: '',
+  },
+];
+
+const Team = () => {
   return (
-    <main className="min-h-screen bg-white text-black p-5 text-center">
-      <h1>Meet Our Team</h1>
-      <div>
-        {teamMembers.map((member) => (
-          <div key={member.id} className="mb-4">
-            <h2>{member.name}</h2>
-            <p>{member.role}</p>
-          </div>
-        ))}
-      </div>
-    </main>
+    <div>
+      <HeadShotWithText members={teamMembers} />
+    </div>
   );
 };
 
