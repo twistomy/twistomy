@@ -37,7 +37,7 @@ const ContentWithImage = ({
           return (
             <h2
               key={index}
-              className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight text-gray-900"
+              className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight text-gray-900 dark:text-white"
             >
               {item.text}
             </h2>
@@ -46,7 +46,7 @@ const ContentWithImage = ({
           return (
             <h3
               key={index}
-              className="text-xl md:text-2xl font-semibold mb-3 leading-snug text-gray-800"
+              className="text-xl md:text-2xl font-semibold mb-3 leading-snug text-gray-800 dark:text-gray-200"
             >
               {item.text}
             </h3>
@@ -55,7 +55,7 @@ const ContentWithImage = ({
           return (
             <p
               key={index}
-              className="text-base md:text-lg text-gray-700 mb-4 leading-relaxed"
+              className="text-base md:text-lg text-gray-700 dark:text-gray-300 mb-4 leading-relaxed"
             >
               {item.text}
             </p>
@@ -101,10 +101,7 @@ const ContentWithImage = ({
             imageSrc ? "md:w-[48%]" : "md:w-full"
           } ${textStyle}`}
         >
-          <div
-            style={{ backgroundColor: "#F5F5F5" }}
-            className="border border-gray-200 rounded-xl p-8"
-          >
+          <div className="bg-[#F5F5F5] dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-8 transition-colors duration-300">
             {renderContent()}
           </div>
         </motion.div>
@@ -116,7 +113,7 @@ const ContentWithImage = ({
 export default ContentWithImage;
 
 ContentWithImage.propTypes = {
-  imageSrc: PropTypes.string, // not required anymore
+  imageSrc: PropTypes.string,
   imageAlt: PropTypes.string,
   imageOnLeft: PropTypes.bool,
   content: PropTypes.arrayOf(
