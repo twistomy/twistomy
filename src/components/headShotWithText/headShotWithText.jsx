@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 
 const HeadShotWithText = ({ members }) => {
   return (
-    <section className="py-12 px-6 md:px-16 bg-white">
+    <section className="py-12 px-6 md:px-16 bg-white dark:bg-[#0f172a] transition-colors duration-300">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-10 text-center">
+          Meet The Team
+        </h2>
       <div className="flex flex-wrap justify-center gap-10">
         {members.map((member, index) => (
           <div
             key={index}
-            className="w-full sm:w-[280px] md:w-[300px] h-full flex flex-col items-center text-center bg-gray-100 p-6 rounded-lg min-h-[320px]"
+            className="w-full sm:w-[280px] md:w-[300px] h-full flex flex-col items-center text-center bg-gray-100 dark:bg-gray-800 p-6 rounded-lg min-h-[320px] transition-colors duration-300"
           >
             <img
               src={member.imageSrc}
@@ -17,13 +20,17 @@ const HeadShotWithText = ({ members }) => {
             />
             <div className="flex flex-col flex-grow justify-between">
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1">
                   {member.name}
                 </h3>
-                <p className="text-sm text-gray-600 mb-2">{member.role}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                  {member.role}
+                </p>
               </div>
               {member.bio && (
-                <p className="text-sm text-gray-700 mt-2">{member.bio}</p>
+                <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
+                  {member.bio}
+                </p>
               )}
             </div>
           </div>

@@ -29,19 +29,28 @@ const ContentWithImage = ({
       switch (item.type) {
         case "header":
           return (
-            <h2 key={index} className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight text-gray-900">
+            <h2
+              key={index}
+              className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight text-gray-900 dark:text-white"
+            >
               {item.text}
             </h2>
           );
         case "subheader":
           return (
-            <h3 key={index} className="text-xl md:text-2xl font-semibold mb-3 leading-snug text-gray-800">
+            <h3
+              key={index}
+              className="text-xl md:text-2xl font-semibold mb-3 leading-snug text-gray-800 dark:text-gray-200"
+            >
               {item.text}
             </h3>
           );
         case "paragraph":
           return (
-            <p key={index} className="text-base md:text-lg text-gray-700 mb-4 leading-relaxed">
+            <p
+              key={index}
+              className="text-base md:text-lg text-gray-700 dark:text-gray-300 mb-4 leading-relaxed"
+            >
               {item.text}
             </p>
           );
@@ -56,7 +65,7 @@ const ContentWithImage = ({
   return (
     <section
       ref={ref}
-      className={`py-20 px-6 md:px-16 bg-white overflow-hidden ${containerStyle}`}
+      className={`py-20 px-6 md:px-16 bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden ${containerStyle}`}
     >
       <div
         className={`flex flex-col md:flex-row items-center justify-between gap-10 md:gap-14 ${
@@ -82,10 +91,7 @@ const ContentWithImage = ({
           animate={textControls}
           className={`w-full md:w-[48%] ${textStyle}`}
         >
-          <div
-            style={{ backgroundColor: '#F5F5F5' }}
-            className="border border-gray-200 rounded-xl p-8"
-          >
+          <div className="bg-[#F5F5F5] dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-8 transition-colors duration-300">
             {renderContent()}
           </div>
         </motion.div>

@@ -10,59 +10,34 @@ const SectionDivider = ({ text }) => {
     offset: ['start end', 'end start'],
   });
 
-  // Animate text movement left <-> right
   const x = useTransform(scrollYProgress, [0, 1], [-100, 100]);
 
   return (
     <Box
       ref={ref}
-      sx={{
-        position: 'relative',
-        width: '100%',
-        my: 12,
-        px: 4,
-      }}
+      className="relative w-full my-12 px-4"
     >
       {/* Static gradient divider line */}
       <Box
+        className="absolute top-1/2 left-0 transform -translate-y-1/2 z-0"
         sx={{
           height: '2px',
           width: '100%',
           background: 'linear-gradient(to right, #ccc, #333, #ccc)',
-          position: 'absolute',
-          top: '50%',
-          left: 0,
-          transform: 'translateY(-50%)',
-          zIndex: 0,
         }}
       />
 
       {/* Centered and animated text */}
       <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          position: 'relative',
-          zIndex: 1,
-        }}
+        className="relative z-10 flex justify-center"
       >
         <motion.div style={{ x }}>
           <Box
-            sx={{
-              backgroundColor: 'background.paper',
-              px: 4,
-              py: 1,
-            }}
+            className="bg-white dark:bg-[#0f172a] px-4 py-1 transition-colors duration-300"
           >
             <Typography
               variant="h4"
-              sx={{
-                fontWeight: 'bold',
-                color: 'text.primary',
-                textTransform: 'uppercase',
-                letterSpacing: 1,
-                whiteSpace: 'nowrap',
-              }}
+              className="font-bold text-gray-900 dark:text-white uppercase tracking-wide whitespace-nowrap"
             >
               {text}
             </Typography>
