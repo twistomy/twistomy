@@ -10,7 +10,7 @@ import SectionDivider from "../../components/sectionDivider/sectionDivider";
 
 const Home = () => {
   return (
-    <main className="bg-white text-black">
+    <main className="bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300">
       {/* Hero Section */}
       <section className="bg-black text-white h-[93vh]">
         <HeroSection />
