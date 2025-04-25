@@ -31,29 +31,24 @@ const teamMembers = [
     role: "Pediatric Nurse Practitioner",
     bio: "Department of GI, University of Colorado Anschutz Medical Campus",
   },
-  {
-    imageSrc: MichaelPizzalato,
-    name: "Michael Pizzalato, MBA, MS",
-    role: "Financial Consultant",
-    bio: "",
-  },
 ];
 
 const Team = () => {
   return (
-    // <div className="px-4 py-12 md:py-20 bg-gray-50">
-    //   <div className="max-w-5xl mx-auto text-center mb-12">
-    //     <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-    //       Meet the Team
-    //     </h2>
-    //     <p className="text-lg text-gray-600">
-    //       The passionate professionals behind Twistomy — dedicated to
-    //       transforming ostomy care through innovation and compassion.
-    //     </p>
-    //   </div>
-    <div>
-      <HeadShotWithText members={teamMembers} />
-    </div>
+    <main className="bg-white dark:bg-gray-900 min-h-screen flex flex-col">
+      <div className="px-4 py-12 md:py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-5xl mx-auto text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            Meet the Team
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
+            The passionate professionals behind Twistomy — dedicated to
+            transforming ostomy care through innovation and compassion.
+          </p>
+        </div>
+        <HeadShotWithText members={teamMembers} />
+      </div>
+    </main>
   );
 };
 

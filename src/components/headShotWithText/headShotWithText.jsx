@@ -9,7 +9,7 @@ const HeadShotWithText = ({ members }) => {
   };
 
   return (
-    <section className="py-12 px-6 md:px-16 bg-white rounded-lg">
+    <section className="py-12 px-6 md:px-16 bg-white dark:bg-gray-900 rounded-lg">
       <div className="flex flex-wrap justify-center gap-10">
         {members.map((member, index) => {
           const isExpanded = expandedIndex === index;
@@ -18,7 +18,7 @@ const HeadShotWithText = ({ members }) => {
             <div
               key={index}
               onClick={() => handleClick(index)}
-              className="relative w-full sm:w-[280px] md:w-[300px] h-full cursor-pointer bg-white border-base-pink-lightest border-2 p-6 rounded-lg min-h-[320px] group overflow-hidden"
+              className="relative w-full sm:w-[280px] md:w-[300px] h-full cursor-pointer bg-white dark:bg-gray-800 border-base-pink-lightest dark:border-base-pink-dark border-2 p-6 rounded-lg min-h-[320px] group overflow-hidden"
             >
               <img
                 src={member.imageSrc}
@@ -37,12 +37,16 @@ const HeadShotWithText = ({ members }) => {
                 }`}
               >
                 <div className="mt-28 text-center">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1">
                     {member.name}
                   </h3>
-                  <p className="text-sm text-gray-600 mb-2">{member.role}</p>
+                  <p className="text-sm text-gray-600 dark:text-base-pink mb-2">
+                    {member.role}
+                  </p>
                   {member.bio && (
-                    <p className="text-sm text-gray-700 mt-2">{member.bio}</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-400 mt-2">
+                      {member.bio}
+                    </p>
                   )}
                 </div>
               </div>
