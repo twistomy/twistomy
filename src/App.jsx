@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import { AppBuilder } from "@aleks-ey/dynamic-app-builder";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 // import pages
@@ -12,13 +12,24 @@ import Faq from "./pages/faq/FAQ";
 import Contact from "./pages/contact/Contact";
 
 function App() {
-  // header and footer configs should be made here or imported from a file, default configs are imported from globalConfigs folder
-  // const headerConfig = {}; or import headerConfig from "./HeaderConfig";
-  // const footerConfig = {}; or import footerConfig from "./FooterConfig";
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
+
+  useEffect(() => {
+    const html = document.documentElement;
+    if (darkMode) {
+      html.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      html.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
 
   return (
     <Router>
-      <Header />
+      <Header darkMode={darkMode} setDarkMode={setDarkMode} />
       <Routes>
         <Route path="" element={<Home />} />
         <Route path="/" element={<Home />} />
@@ -34,3 +45,4 @@ function App() {
 }
 
 export default App;
+

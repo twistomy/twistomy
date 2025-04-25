@@ -2,8 +2,11 @@
 import { useState } from "react";
 // import { supabase } from "../../../supabaseClient";
 // import { useNavigate } from "react-router-dom";
+import { IconButton } from "@mui/material";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 
-const Header = () => {
+const Header = ({ darkMode, setDarkMode }) => {
   //   const [user, setUser] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   //   const navigate = useNavigate();
@@ -30,7 +33,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 w-full z-40 flex items-center justify-between px-4 py-2 bg-white shadow text-black">
+    <header className="sticky top-0 w-full z-40 flex items-center justify-between px-4 py-2 bg-white dark:bg-[#0b1120] shadow text-black dark:text-white transition-colors duration-300">
       {/* Logo + Identity */}
       <div className="flex items-center space-x-2">
         <a href="/home">
@@ -42,7 +45,7 @@ const Header = () => {
         </a>
         <a href="/home" className="flex flex-col leading-tight">
           <span className="font-semibold text-xl">Twistomy</span>
-          <span className="text-sm text-gray-500">Slogan</span>
+          <span className="text-sm text-gray-500 dark:text-gray-400">Slogan</span>
         </a>
       </div>
 
@@ -55,16 +58,21 @@ const Header = () => {
       </div>
 
       {/* Desktop Nav Links */}
-      <nav className="hidden md:flex gap-4">
+      <nav className="hidden md:flex gap-4 items-center">
         {navLinks.map((item, i) => (
           <a
             key={i}
             href={item.link}
-            className="px-3 py-2 text-sm font-medium hover:text-blue-600"
+            className="px-3 py-2 text-sm font-medium hover:text-blue-600 dark:hover:text-blue-400"
           >
             {item.text}
           </a>
         ))}
+
+        {/* Dark mode toggle */}
+        <IconButton onClick={() => setDarkMode((prev) => !prev)} color="inherit">
+          {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
+        </IconButton>
       </nav>
 
       {/* Account menu */}
@@ -102,7 +110,7 @@ const Header = () => {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-40 ${
+        className={`fixed top-0 left-0 h-full w-64 bg-white dark:bg-gray-900 shadow-lg transform transition-transform duration-300 ease-in-out z-40 ${
           isDrawerOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -112,15 +120,15 @@ const Header = () => {
             alt="Drawer Logo"
             className="h-20 w-auto mb-4"
           />
-          <span className="text-xl font-bold">Name</span>
-          <span className="text-sm text-gray-500">Slogan</span>
+          <span className="text-xl font-bold text-gray-900 dark:text-white">Name</span>
+          <span className="text-sm text-gray-500 dark:text-gray-400">Slogan</span>
         </div>
         <nav className="flex flex-col mt-6 space-y-4 px-6">
           {navLinks.map((item, i) => (
             <a
               key={i}
               href={item.link}
-              className="text-gray-700 hover:text-blue-600 text-base"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 text-base"
               onClick={() => setIsDrawerOpen(false)}
             >
               {item.text}
