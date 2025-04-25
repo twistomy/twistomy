@@ -38,9 +38,6 @@ const Home = () => {
         {/* Details Section */}
         <ContentWithImage
           imageSrc={TwistomyGenCapWafer}
-          /*
-          [Primary Photo of the Device should be somewhere toward the top of site here (photo labeled: twistomy cap and wafer photo) *VRML file of same photo labeled “continent assembly collapsed” has also been added to google drive for cooler shadow animation that you wanted to do]
-          */
           imageAlt="About Twistomy™"
           content={[
             { type: "header", text: "About Twistomy™" },
@@ -51,15 +48,12 @@ const Home = () => {
           ]}
           imageOnLeft={true}
           containerStyle="px-6 md:px-12"
-          imageStyle="rounded-lg shadow-lg"
+          imageStyle="rounded-lg"
           textStyle="text-center md:text-left"
         />
 
         <ContentWithImage
           imageSrc={TwistomyGenCapWafer}
-          /*
-          [Insert “Ostomy Pouch Cleaning” Video in Drive somewhere near this problem blurb if possible]
-          */
           imageAlt="The Problem"
           content={[
             { type: "header", text: "The Problem" },
@@ -70,7 +64,7 @@ const Home = () => {
           ]}
           imageOnLeft={false}
           containerStyle="px-6 md:px-12"
-          imageStyle="rounded-lg shadow-lg"
+          imageStyle="rounded-lg"
           textStyle="text-center md:text-left"
         />
         <SectionDivider text="Our Solution" />
@@ -86,7 +80,7 @@ const Home = () => {
           ]}
           imageOnLeft={true}
           containerStyle="px-6 md:px-12"
-          imageStyle="rounded-lg shadow-lg"
+          imageStyle="rounded-lg"
           textStyle="text-center md:text-left"
         />
         <ContentWithImage
@@ -101,7 +95,7 @@ const Home = () => {
           ]}
           imageOnLeft={false}
           containerStyle="px-6 md:px-12"
-          imageStyle="rounded-lg shadow-lg"
+          imageStyle="rounded-lg"
           textStyle="text-center md:text-left"
         />
         <ContentWithImage
@@ -116,7 +110,7 @@ const Home = () => {
           ]}
           imageOnLeft={true}
           containerStyle="px-6 md:px-12"
-          imageStyle="rounded-lg shadow-lg"
+          imageStyle="rounded-lg"
           textStyle="text-center md:text-left"
         />
         <SectionDivider text="Competition" />
@@ -132,7 +126,7 @@ const Home = () => {
           ]}
           imageOnLeft={true}
           containerStyle="px-6 md:px-12"
-          imageStyle="rounded-lg shadow-lg"
+          imageStyle="rounded-lg"
           textStyle="text-center md:text-left"
         />
         <ContentWithImage
@@ -146,7 +140,7 @@ const Home = () => {
           ]}
           imageOnLeft={false}
           containerStyle="px-6 md:px-12"
-          imageStyle="rounded-lg shadow-lg"
+          imageStyle="rounded-lg"
           textStyle="text-center md:text-left"
         />
       </div>

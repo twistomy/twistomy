@@ -1,7 +1,7 @@
 import React from "react";
 import HeadShotWithText from "../../components/headShotWithText/headShotWithText";
 import DrMoulton from "../../assets/pictures/headshots/Dr_Moulton.jpg";
-import SaraFidanza from "../../assets/pictures/headshots/Sara_Headshot.jpg";
+import SaraFidanza from "../../assets/pictures/headshots/Sara_Fidanza.png";
 import LilyWilliams from "../../assets/pictures/headshots/Lily_headshot.jpg";
 import DevonHorton from "../../assets/pictures/headshots/Devon_headshot.png";
 import MichaelPizzalato from "../../assets/pictures/headshots/Pizzalato_headshot.jpg";
@@ -14,10 +14,10 @@ const teamMembers = [
     bio: "Department of Surgery, University of Colorado School of Medicine and Children’s Hospital Colorado",
   },
   {
-    imageSrc: SaraFidanza,
-    name: "Sara Fidanza, CNS-BC, CPNP-PC",
-    role: "Pediatric Nurse Practitioner",
-    bio: "Department of GI, University of Colorado Anschutz Medical Campus",
+    imageSrc: DevonHorton,
+    name: "Devon Horton, BS",
+    role: "Senior Bioengineer",
+    bio: "Department of Surgery, University of Colorado Anschutz Medical Campus",
   },
   {
     imageSrc: LilyWilliams,
@@ -26,10 +26,10 @@ const teamMembers = [
     bio: "Department of Surgery, University of Colorado Anschutz Medical Campus",
   },
   {
-    imageSrc: DevonHorton,
-    name: "Devon Horton, BS",
-    role: "Senior Bioengineer",
-    bio: "Department of Surgery, University of Colorado Anschutz Medical Campus",
+    imageSrc: SaraFidanza,
+    name: "Sara Fidanza, CNS-BC, CPNP-PC",
+    role: "Pediatric Nurse Practitioner",
+    bio: "Department of GI, University of Colorado Anschutz Medical Campus",
   },
   {
     imageSrc: MichaelPizzalato,

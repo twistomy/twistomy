@@ -9,38 +9,46 @@ const HeadShotWithText = ({ members }) => {
   };
 
   return (
-    <section className="py-12 px-6 md:px-16 bg-white dark:bg-[#0f172a] transition-colors duration-300">
-      <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-10 text-center">
-        Meet The Team
-      </h2>
+    <section className="py-12 px-6 md:px-16 bg-white rounded-lg">
       <div className="flex flex-wrap justify-center gap-10">
-        {members.map((member, index) => (
-          <div
-            key={index}
-            className="w-full sm:w-[280px] md:w-[300px] h-full flex flex-col items-center text-center bg-gray-100 dark:bg-gray-800 p-6 rounded-lg min-h-[320px] transition-colors duration-300"
-          >
-            <img
-              src={member.imageSrc}
-              alt={member.name}
-              className="w-24 h-24 rounded-full object-cover mb-4"
-            />
-            <div className="flex flex-col flex-grow justify-between">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1">
-                  {member.name}
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                  {member.role}
-                </p>
+        {members.map((member, index) => {
+          const isExpanded = expandedIndex === index;
+
+          return (
+            <div
+              key={index}
+              onClick={() => handleClick(index)}
+              className="relative w-full sm:w-[280px] md:w-[300px] h-full cursor-pointer bg-white border-base-pink-lightest border-2 p-6 rounded-lg min-h-[320px] group overflow-hidden"
+            >
+              <img
+                src={member.imageSrc}
+                alt={member.name}
+                className={`absolute transition-all duration-300 ease-in-out object-cover ${
+                  isExpanded
+                    ? "top-0 left-0 w-full h-full z-10 rounded-none"
+                    : "w-24 h-24 rounded-full z-10 group-hover:scale-105 top-6 left-1/2 -translate-x-1/2"
+                }`}
+              />
+
+              {/* Content fades when expanded */}
+              <div
+                className={`relative z-20 transition-opacity duration-300 ${
+                  isExpanded ? "opacity-0 pointer-events-none" : "opacity-100"
+                }`}
+              >
+                <div className="mt-28 text-center">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                    {member.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-2">{member.role}</p>
+                  {member.bio && (
+                    <p className="text-sm text-gray-700 mt-2">{member.bio}</p>
+                  )}
+                </div>
               </div>
-              {member.bio && (
-                <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
-                  {member.bio}
-                </p>
-              )}
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

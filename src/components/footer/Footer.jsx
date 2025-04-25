@@ -6,8 +6,8 @@ export default function Footer() {
   // Nav links
   const navLinks = [
     { text: "Home", link: "/home" },
-    // { text: "About", link: "/about" },
-    { text: "The Team", link: "/team" },
+    { text: "Team", link: "/team" },
+    { text: "News", link: "/news" },
     { text: "FAQ", link: "/faq" },
     { text: "Contact", link: "/contact" },
   ];

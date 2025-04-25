@@ -8,6 +8,7 @@ import Footer from "./components/footer/Footer";
 import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import Team from "./pages/team/Team";
+import News from "./pages/news/News";
 import Faq from "./pages/faq/FAQ";
 import Contact from "./pages/contact/Contact";
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/team" element={<Team />} />
+        <Route path="/news" element={<News />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
@@ -45,4 +47,3 @@ function App() {
 }
 
 export default App;
-

@@ -26,8 +26,8 @@ const Header = ({ darkMode, setDarkMode }) => {
 
   const navLinks = [
     { text: "Home", link: "/" },
-    // { text: "About", link: "/about" },
     { text: "Team", link: "/team" },
+    { text: "News", link: "/news" },
     { text: "FAQ", link: "/faq" },
     { text: "Contact", link: "/contact" },
   ];
@@ -45,7 +45,9 @@ const Header = ({ darkMode, setDarkMode }) => {
         </a>
         <a href="/home" className="flex flex-col leading-tight">
           <span className="font-semibold text-xl">Twistomy</span>
-          <span className="text-sm text-gray-500 dark:text-gray-400">Slogan</span>
+          <span className="text-sm text-gray-500 dark:text-gray-400">
+            Continent Ostomy
+          </span>
         </a>
       </div>
 
@@ -70,7 +72,10 @@ const Header = ({ darkMode, setDarkMode }) => {
         ))}
 
         {/* Dark mode toggle */}
-        <IconButton onClick={() => setDarkMode((prev) => !prev)} color="inherit">
+        <IconButton
+          onClick={() => setDarkMode((prev) => !prev)}
+          color="inherit"
+        >
           {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
         </IconButton>
       </nav>
@@ -120,8 +125,12 @@ const Header = ({ darkMode, setDarkMode }) => {
             alt="Drawer Logo"
             className="h-20 w-auto mb-4"
           />
-          <span className="text-xl font-bold text-gray-900 dark:text-white">Name</span>
-          <span className="text-sm text-gray-500 dark:text-gray-400">Slogan</span>
+          <span className="text-xl font-bold text-gray-900 dark:text-white">
+            Name
+          </span>
+          <span className="text-sm text-gray-500 dark:text-gray-400">
+            Slogan
+          </span>
         </div>
         <nav className="flex flex-col mt-6 space-y-4 px-6">
           {navLinks.map((item, i) => (
