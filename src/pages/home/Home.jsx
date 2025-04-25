@@ -1,6 +1,10 @@
 import HeroSection from "../../components/hero/HeroSection";
 import chevronDown from "/icons/arrows/chevron-down.svg";
-import TwistomyGenCapWafer from "../../assets/pictures/Twistomy_gen_cap_wafer.png"; // Adjust the path as necessary
+import TwistomyGenCapWafer from "../../assets/pictures/Twistomy_gen_cap_wafer.png";
+import Twist from "../../assets/pictures/Twisted.png";
+import ContinentAssembly from "../../assets/pictures/continent_assembly_exploded.png";
+import ExcretoryAssembly from "../../assets/pictures/excretory_assembly_collapsed.png";
+import Table from "../../assets/pictures/Table.png";
 import ContentWithImage from "../../components/contentWithImage/ContentWithImage";
 import SectionDivider from "../../components/sectionDivider/sectionDivider";
 
@@ -69,12 +73,9 @@ const Home = () => {
           imageStyle="rounded-lg shadow-lg"
           textStyle="text-center md:text-left"
         />
-        <SectionDivider text="Tab 2" />
+        <SectionDivider text="Our Solution" />
         <ContentWithImage
-          imageSrc={TwistomyGenCapWafer}
-          /*
-            NO IMAGE INFO ON DOC
-          */
+          imageSrc={ContinentAssembly}
           imageAlt="The Twistomy™ Solution"
           content={[
             { type: "header", text: "The Twistomy™ Solution" },
@@ -89,11 +90,7 @@ const Home = () => {
           textStyle="text-center md:text-left"
         />
         <ContentWithImage
-          imageSrc={TwistomyGenCapWafer}
-          /*
-            [Insert “Continent Assembly Exploded View” Photo here with Arrows to Parts as seen below]
-            [Insert “Twisted” photo here with arrows to parts as seen below]
-          */
+          imageSrc={Twist}
           imageAlt="Core Features"
           content={[
             { type: "header", text: "Core Features" },
@@ -108,10 +105,7 @@ const Home = () => {
           textStyle="text-center md:text-left"
         />
         <ContentWithImage
-          imageSrc={TwistomyGenCapWafer}
-          /*
-            [Insert “excretory assembly collapsed” photo here with labels as seen in the diagram above]
-          */
+          imageSrc={ExcretoryAssembly}
           imageAlt="Seamless Integration & User Control"
           content={[
             { type: "header", text: "Seamless Integration & User Control" },
@@ -125,12 +119,9 @@ const Home = () => {
           imageStyle="rounded-lg shadow-lg"
           textStyle="text-center md:text-left"
         />
-        <SectionDivider text="Tab 3" />
+        <SectionDivider text="Competition" />
         <ContentWithImage
-          imageSrc={TwistomyGenCapWafer}
-          /*
-            [Insert “Table” png here]
-          */
+          imageSrc={Table}
           imageAlt="What makes Twistomy™ different?"
           content={[
             { type: "header", text: "What makes Twistomy™ different?" },
@@ -145,11 +136,6 @@ const Home = () => {
           textStyle="text-center md:text-left"
         />
         <ContentWithImage
-          imageSrc={TwistomyGenCapWafer}
-          /*
-            [Insert “Continent Assembly Exploded View” Photo here with Arrows to Parts as seen below]
-            [Insert “Twisted” photo here with arrows to parts as seen below]
-          */
           imageAlt="Why Twistomy™?"
           content={[
             { type: "header", text: "Why Twistomy™?" },
@@ -163,7 +149,7 @@ const Home = () => {
           imageStyle="rounded-lg shadow-lg"
           textStyle="text-center md:text-left"
         />
-      </div>    
+      </div>
     </main>
   );
 };

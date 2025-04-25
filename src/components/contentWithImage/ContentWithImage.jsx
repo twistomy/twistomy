@@ -19,7 +19,13 @@ const ContentWithImage = ({
 
   useEffect(() => {
     if (isInView) {
-      imageControls.start({ x: 0, opacity: 1, transition: { duration: 0.8 } });
+      if (imageSrc) {
+        imageControls.start({
+          x: 0,
+          opacity: 1,
+          transition: { duration: 0.8 },
+        });
+      }
       textControls.start({ x: 0, opacity: 1, transition: { duration: 0.8 } });
     }
   }, [isInView]);
@@ -29,19 +35,28 @@ const ContentWithImage = ({
       switch (item.type) {
         case "header":
           return (
-            <h2 key={index} className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight text-gray-900">
+            <h2
+              key={index}
+              className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight text-gray-900"
+            >
               {item.text}
             </h2>
           );
         case "subheader":
           return (
-            <h3 key={index} className="text-xl md:text-2xl font-semibold mb-3 leading-snug text-gray-800">
+            <h3
+              key={index}
+              className="text-xl md:text-2xl font-semibold mb-3 leading-snug text-gray-800"
+            >
               {item.text}
             </h3>
           );
         case "paragraph":
           return (
-            <p key={index} className="text-base md:text-lg text-gray-700 mb-4 leading-relaxed">
+            <p
+              key={index}
+              className="text-base md:text-lg text-gray-700 mb-4 leading-relaxed"
+            >
               {item.text}
             </p>
           );
@@ -63,27 +78,31 @@ const ContentWithImage = ({
           imageOnLeft ? "md:flex-row-reverse" : ""
         }`}
       >
-        {/* Image */}
-        <motion.div
-          initial={imageInitial}
-          animate={imageControls}
-          className="w-full md:w-[44%]"
-        >
-          <img
-            src={imageSrc}
-            alt={imageAlt}
-            className={`w-full object-cover rounded-2xl ${imageStyle}`}
-          />
-        </motion.div>
+        {/* Conditionally render image block */}
+        {imageSrc && (
+          <motion.div
+            initial={imageInitial}
+            animate={imageControls}
+            className="w-full md:w-[44%]"
+          >
+            <img
+              src={imageSrc}
+              alt={imageAlt}
+              className={`w-full object-cover rounded-2xl ${imageStyle}`}
+            />
+          </motion.div>
+        )}
 
         {/* Text Box */}
         <motion.div
           initial={textInitial}
           animate={textControls}
-          className={`w-full md:w-[48%] ${textStyle}`}
+          className={`w-full ${
+            imageSrc ? "md:w-[48%]" : "md:w-full"
+          } ${textStyle}`}
         >
           <div
-            style={{ backgroundColor: '#F5F5F5' }}
+            style={{ backgroundColor: "#F5F5F5" }}
             className="border border-gray-200 rounded-xl p-8"
           >
             {renderContent()}
@@ -97,7 +116,7 @@ const ContentWithImage = ({
 export default ContentWithImage;
 
 ContentWithImage.propTypes = {
-  imageSrc: PropTypes.string.isRequired,
+  imageSrc: PropTypes.string, // not required anymore
   imageAlt: PropTypes.string,
   imageOnLeft: PropTypes.bool,
   content: PropTypes.arrayOf(
