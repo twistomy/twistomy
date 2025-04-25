@@ -19,13 +19,8 @@ const SectionDivider = ({ text }) => {
     >
       {/* Static gradient divider line */}
       <Box
-        className="absolute top-1/2 left-0 transform -translate-y-1/2 z-0"
-        sx={{
-          height: '2px',
-          width: '100%',
-          background: 'linear-gradient(to right, #ccc, #333, #ccc)',
-        }}
-      />
+  className="absolute top-1/2 left-0 transform -translate-y-1/2 z-0 h-[2px] w-full bg-[linear-gradient(to_right,_#ccc,_#333,_#ccc)] dark:bg-[linear-gradient(to_right,_#1a1a1a,_#555,_#1a1a1a)] transition-colors duration-300"
+/>
 
       {/* Centered and animated text */}
       <Box
