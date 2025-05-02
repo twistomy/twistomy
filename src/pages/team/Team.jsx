@@ -3,8 +3,7 @@ import HeadShotWithText from "../../components/headShotWithText/headShotWithText
 import DrMoulton from "../../assets/pictures/headshots/Dr_moulton.jpg";
 import SaraFidanza from "../../assets/pictures/headshots/Sara_Fidanza.png";
 import LilyWilliams from "../../assets/pictures/headshots/Lily_headshot.jpg";
-import DevonHorton from "../../assets/pictures/headshots/Devon_headshot.png";
-import MichaelPizzalato from "../../assets/pictures/headshots/Pizzalato_headshot.jpg";
+import DevonHorton from "../../assets/pictures/headshots/devon_headshot.png";
 
 const teamMembers = [
   {
