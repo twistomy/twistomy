@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { supabase } from "../../../supabaseClient";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const Contact = () => {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,32 +21,37 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch(
-        "https://njevaennoxinixwqvptc.functions.supabase.co/send-contact-email",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const { error } = await supabase
+        .from("contact_messages")
+        .insert([formData]);
 
-      if (!res.ok) throw new Error("Submission failed");
+      if (error) throw error;
 
-      setSubmitted(true);
+      setShowPopup(true); // ✅ show the popup
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        heard_about: "",
+        subject: "",
+        message: "",
+      });
+
+      setTimeout(() => setShowPopup(false), 3000); // auto-close in 3 sec
     } catch (err) {
       console.error("Submission error:", err);
       alert("Something went wrong. Please try again later.");
     }
   };
 
-  if (submitted)
-    return <p className="text-green-500">Message sent. Thank you!</p>;
-
   return (
     <main className="min-h-screen content-center bg-white dark:bg-gray-900 text-black p-5 text-center">
-      {/* Hero Section */}
+      {showPopup && (
+        <div className="fixed top-5 right-5 z-50 bg-base-pink text-white px-4 py-2 rounded shadow-lg transition-all">
+          Message sent. Thank you for reaching out!
+        </div>
+      )}
+
       <section className="text-center mb-8">
         <h1 className="text-6xl md:text-3xl font-bold dark:text-white">
           Contact Us
