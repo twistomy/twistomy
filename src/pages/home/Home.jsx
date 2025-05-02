@@ -12,12 +12,12 @@ const Home = () => {
   return (
     <main className="bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300">
       {/* Hero Section */}
-      <section className="bg-black text-white h-[93vh]">
+      <section className="bg-black text-white min-h-[93vh]">
         <HeroSection />
 
         {/* Bouncing Arrow */}
         <div
-          className="absolute z-20 bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
+          className="hidden md:block absolute z-20 bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
           onClick={() => {
             const detailsSection = document.getElementById("details-section");
             if (detailsSection) {
@@ -32,9 +32,9 @@ const Home = () => {
           />
         </div>
       </section>
-      <SectionDivider text="About Us" />
 
-      <div id="details-section">
+      <div id="details-section" className="pt-10">
+        <SectionDivider text="About Us" />
         {/* Details Section */}
         <ContentWithImage
           imageSrc={TwistomyGenCapWafer}
@@ -47,7 +47,7 @@ const Home = () => {
             },
           ]}
           imageOnLeft={true}
-          containerStyle="px-6 md:px-12"
+          containerStyle="px-6 md:px-12 pb-10"
           imageStyle="rounded-lg"
           textStyle="text-center md:text-left"
         />
@@ -63,7 +63,7 @@ const Home = () => {
             },
           ]}
           imageOnLeft={false}
-          containerStyle="px-6 md:px-12"
+          containerStyle="px-6 md:px-12 py-10"
           imageStyle="rounded-lg"
           textStyle="text-center md:text-left"
         />
@@ -94,7 +94,7 @@ const Home = () => {
             },
           ]}
           imageOnLeft={false}
-          containerStyle="px-6 md:px-12"
+          containerStyle="px-6 md:px-12 py-10"
           imageStyle="rounded-lg"
           textStyle="text-center md:text-left"
         />
@@ -109,7 +109,7 @@ const Home = () => {
             },
           ]}
           imageOnLeft={true}
-          containerStyle="px-6 md:px-12"
+          containerStyle="px-6 md:px-12 py-10"
           imageStyle="rounded-lg"
           textStyle="text-center md:text-left"
         />
@@ -125,7 +125,7 @@ const Home = () => {
             },
           ]}
           imageOnLeft={true}
-          containerStyle="px-6 md:px-12"
+          containerStyle="px-6 md:px-12 py-10"
           imageStyle="rounded-lg"
           textStyle="text-center md:text-left"
         />
@@ -139,7 +139,7 @@ const Home = () => {
             },
           ]}
           imageOnLeft={false}
-          containerStyle="px-6 md:px-12"
+          containerStyle="px-6 md:px-12 py-10"
           imageStyle="rounded-lg"
           textStyle="text-center md:text-left"
         />

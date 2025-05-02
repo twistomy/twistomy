@@ -15,8 +15,8 @@ export default function Footer() {
   // Nav link styling
   const navLinkClass =
     "font-montserrat text-sm bg-transparent text-white px-2 py-2 " +
-    "border-transparent hover:text-main hover:border-b hover:border-b-main " +
-    "active:text-main active:border-main focus:outline-none";
+    "border-transparent hover:text-base-pink hover:border-b hover:border-b-base-pink " +
+    "active:text-base-pink active:border-base-pink-light focus:outline-none";
 
   // Container style for nav links
   const navLinksContainerClass =
@@ -25,10 +25,9 @@ export default function Footer() {
   // Contact info
   const contactItems = [
     { text: "Mail: info@twistomy.com" },
-    { text: "Phone: +1 (234) 567-890" },
     {
       isLink: true,
-      link: "https://LinkedIn.com/",
+      link: "https://LinkedIn.com/in/twistomy",
       text: "Connect with us on LinkedIn",
       icon: {
         iconUrl: "/logos/LI-In-Bug.png",
@@ -41,7 +40,7 @@ export default function Footer() {
     },
     {
       isLink: true,
-      link: "https://youtube.com/",
+      link: "https://www.youtube.com/channel/UCO6MQy880XJwRmR5V0Q9wMQ",
       text: "Visit the official Twistomy Channel",
       icon: {
         iconUrl: "/logos/yt_logo_mono_dark.png",

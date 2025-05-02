@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { supabase } from "../../../supabaseClient";
-// import axios from "axios";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -20,22 +18,25 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { error } = await supabase
-      .from("contact_messages")
-      .insert([formData]);
-
-    if (error) {
-      console.error("Supabase error:", error);
-      return;
-    }
-
     try {
-      // await axios.post("/api/send-email", formData);
-    } catch (err) {
-      console.error("Resend error:", err);
-    }
+      const res = await fetch(
+        "https://njevaennoxinixwqvptc.functions.supabase.co/send-contact-message",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
-    setSubmitted(true);
+      if (!res.ok) throw new Error("Submission failed");
+
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Submission error:", err);
+      alert("Something went wrong. Please try again later.");
+    }
   };
 
   if (submitted)
@@ -45,8 +46,10 @@ const Contact = () => {
     <main className="min-h-screen content-center bg-white dark:bg-gray-900 text-black p-5 text-center">
       {/* Hero Section */}
       <section className="text-center mb-8">
-        <h1 className="text-6xl md:text-3xl font-bold">Contact Us</h1>
-        <p className="text-gray-600 text-3xl md:text-xl mt-4">
+        <h1 className="text-6xl md:text-3xl font-bold dark:text-white">
+          Contact Us
+        </h1>
+        <p className="text-gray-600 dark:text-base-pink-dark text-3xl md:text-xl mt-4">
           We would love to hear from you!
         </p>
       </section>
@@ -111,24 +114,6 @@ const Contact = () => {
           </button>
         </form>
       </section>
-
-      {/* Contact Boxes */}
-      {/* <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-4">Contact Information</h2>
-        <p className="text-gray-600 mb-4">
-          For any inquiries, please reach out to us at:
-        </p>
-        <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
-          <div className="flex items-center gap-4 p-4 border border-gray-300 rounded-lg w-full max-w-sm">
-            <span className="text-xl">📧</span>
-            <span className="text-gray-800">support@company.com</span>
-          </div>
-          <div className="flex items-center gap-4 p-4 border border-gray-300 rounded-lg w-full max-w-sm">
-            <span className="text-xl">📞</span>
-            <span className="text-gray-800">+1-234-567-890</span>
-          </div>
-        </div>
-      </section> */}
     </main>
   );
 };

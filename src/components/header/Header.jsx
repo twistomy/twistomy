@@ -2,6 +2,7 @@
 import { useState } from "react";
 // import { supabase } from "../../../supabaseClient";
 // import { useNavigate } from "react-router-dom";
+import propTypes from "prop-types";
 import { IconButton } from "@mui/material";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
@@ -46,8 +47,8 @@ const Header = ({ darkMode, setDarkMode }) => {
           />
         </a>
         <a href="/home" className="flex flex-col leading-tight">
-          <span className="font-semibold text-xl">Twistomy</span>
-          <span className="text-sm text-gray-500 dark:text-gray-400">
+          <span className="font-semibold text-3xl md:text-xl">Twistomy</span>
+          <span className="text-lg md:text-sm text-gray-500 dark:text-gray-400">
             Continent Ostomy
           </span>
         </a>
@@ -69,7 +70,7 @@ const Header = ({ darkMode, setDarkMode }) => {
             <a
               key={i}
               href={item.link}
-              className={`px-3 py-2 text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${
+              className={`px-3 py-2 text-sm font-medium transition-colors hover:text-base-pink ${
                 isActive ? "text-base-pink font-bold" : ""
               }`}
             >
@@ -128,23 +129,23 @@ const Header = ({ darkMode, setDarkMode }) => {
       >
         <div className="flex flex-col items-center pt-10">
           <img
-            src="/src/assets/react.svg"
-            alt="Drawer Logo"
+            src="/logos/SmallerLogo.PNG"
+            alt="Twistomy Logo"
             className="h-20 w-auto mb-4"
           />
-          <span className="text-xl font-bold text-gray-900 dark:text-white">
-            Name
+          <span className="text-2xl font-bold text-gray-900 dark:text-white">
+            Twistomy
           </span>
-          <span className="text-sm text-gray-500 dark:text-gray-400">
-            Slogan
+          <span className="text-lg text-gray-500 dark:text-gray-400">
+            Continent Ostomy
           </span>
         </div>
-        <nav className="flex flex-col mt-6 space-y-4 px-6">
+        <nav className="flex flex-col mt-20 space-y-4 px-6">
           {navLinks.map((item, i) => (
             <a
               key={i}
               href={item.link}
-              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 text-base"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 text-2xl"
               onClick={() => setIsDrawerOpen(false)}
             >
               {item.text}
@@ -157,3 +158,8 @@ const Header = ({ darkMode, setDarkMode }) => {
 };
 
 export default Header;
+
+Header.propTypes = {
+  darkMode: propTypes.bool.isRequired,
+  setDarkMode: propTypes.func.isRequired,
+};

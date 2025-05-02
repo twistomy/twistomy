@@ -48,42 +48,58 @@ function DesktopHero() {
       0.1,
       1000
     );
-    camera.position.set(1, 0.5, 3);
-    camera.lookAt(-1, 0, 0);
+    camera.position.set(16, 8, 25);
+    camera.lookAt(-10, 2, -5);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.autoUpdate = true;
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
 
     /* spotlight 1*/
-    const spot = new THREE.SpotLight(0xffffff, 3);
-    spot.position.set(0, 2, 0);
+    const spot = new THREE.SpotLight(0xffffff, 5);
+    spot.position.set(0, 25, 0);
     spot.angle = Math.PI / 3;
-    spot.penumbra = 0.3;
+    spot.penumbra = 0;
     spot.decay = 0;
-    spot.distance = 20;
+    spot.distance = 0;
     spot.castShadow = true;
     scene.add(spot);
     spot.target.position.set(0, 0, 0);
     scene.add(spot.target);
 
     /* spotlight 2*/
-    const spot2 = new THREE.SpotLight(0xffffff, 3);
-    spot2.position.set(0, 2, 1);
-    spot2.angle = Math.PI / 4;
-    spot2.penumbra = 0.3;
+    const spot2 = new THREE.SpotLight(0xffffff, 2);
+    spot2.position.set(20, 10, 20);
+    // spot2.angle = Math.PI / 4;
+    spot2.penumbra = 0;
     spot2.decay = 0;
-    spot2.distance = 20;
+    spot2.distance = 0;
     spot2.castShadow = false; // no shadow
     scene.add(spot2);
     spot2.target.position.set(0, 0, 0);
     scene.add(spot2.target);
 
+    /* shadow quality */
+    spot.shadow.mapSize.width = 4096;
+    spot.shadow.mapSize.height = 4096;
+    spot.shadow.radius = 4;
+
+    /* shadow acne fix */
+    spot.shadow.bias = -0.0005; // shift depth test
+    spot.shadow.normalBias = 0.02; // push receivers back along normals
+
+    /* cam frustum smaller = sharper */
+    const sCam = spot.shadow.camera;
+    sCam.near = 1;
+    sCam.far = 60;
+    sCam.fov = 60; // narrower cone = higher texel density
+
     /* floor */
     const floor = new THREE.Mesh(
-      new THREE.PlaneGeometry(10, 10),
+      new THREE.PlaneGeometry(50, 50),
       new THREE.MeshPhongMaterial({ color: 0xffffff })
     );
     floor.receiveShadow = true;
@@ -92,13 +108,15 @@ function DesktopHero() {
     scene.add(floor);
 
     /* load GLB with many clips */
-    new GLTFLoader().load("/model/continent_animated.glb", (gltf) => {
+    new GLTFLoader().load("/model/finalContinentAnimated.glb", (gltf) => {
       const root = gltf.scene;
       root.scale.setScalar(0.1);
       root.traverse((m) => {
         if (m.isMesh) {
           m.castShadow = true;
           m.receiveShadow = true;
+          m.material.flatShading = false; // ensure smooth shading
+          m.material.needsUpdate = true;
         }
       });
       scene.add(root);
@@ -208,9 +226,9 @@ function DesktopHero() {
   return (
     <div className="relative w-full h-full">
       {/* Left side text */}
-      <div className="absolute z-10 flex flex-col md:w-1/2 h-full justify-between md:justify-center text-center md:text-left py-20 md:left-10">
-        <h1 className="text-5xl font-bold mb-4 text-base-pink">Twistomy</h1>
-        <p className="text-xl text-base-dark">
+      <div className="absolute z-10 flex flex-col md:w-2/5 h-full justify-between md:justify-center text-center md:text-left py-20 md:left-10">
+        <h1 className="text-6xl font-bold mb-4 text-base-pink">Twistomy</h1>
+        <p className="text-xl text-black">
           You put it in yout body and it does really cool stuff for people who
           need it. Oh yeah, its also super simple and easy to use. I mean, cmon,
           its obvious this thing rocks. Call us right now and get your inestine
@@ -223,7 +241,7 @@ function DesktopHero() {
   );
 }
 
-/* --------------  MOBILE HERO -------------- */
+/* --------------------------------------------  MOBILE HERO -------------------------------------------- */
 function MobileHero() {
   const canvasRef = useRef(null);
   const mixerRef = useRef(null);
@@ -248,7 +266,7 @@ function MobileHero() {
       0.1,
       1000
     );
-    camera.position.set(0, 0.4, 4); // start close
+    camera.position.set(0, 0, 50); // start close
     camera.lookAt(0, 0, 0);
     cameraRef.current = camera;
 
@@ -261,9 +279,9 @@ function MobileHero() {
     scene.add(new THREE.HemisphereLight(0xffffff, 0x555555, 1.5));
 
     /* load model and clips */
-    new GLTFLoader().load("/model/continent_animated.glb", (gltf) => {
+    new GLTFLoader().load("/model/finalContinentAnimated.glb", (gltf) => {
       const root = gltf.scene;
-      root.scale.setScalar(0.12);
+      root.scale.setScalar(0.14);
       scene.add(root);
       rootRef.current = root;
 
@@ -335,14 +353,16 @@ function MobileHero() {
 
       /* camera zoom + lift */
       if (cameraRef.current) {
-        cameraRef.current.position.z = THREE.MathUtils.lerp(4, 7, p);
-        cameraRef.current.position.y = THREE.MathUtils.lerp(0.4, 0.7, p);
-        cameraRef.current.position.x = THREE.MathUtils.lerp(0, -0.2, p); // pan left
+        cameraRef.current.position.z = THREE.MathUtils.lerp(50, 10, p);
+        cameraRef.current.position.y = THREE.MathUtils.lerp(0, 0, p);
+        cameraRef.current.position.x = THREE.MathUtils.lerp(0, 0, p); // pan left
       }
 
       /* tilt while scrubbing (disabled once spin starts) */
       if (!spinRef.current && rootRef.current) {
+        rootRef.current.position.z = THREE.MathUtils.lerp(0, -60, p); // lift
         rootRef.current.rotation.y = p * Math.PI * 0.1; // ≈ 6 deg
+        rootRef.current.rotation.z = p * Math.PI * 0.5; // face camera
       }
 
       /* text fades */

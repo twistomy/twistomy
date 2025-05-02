@@ -71,7 +71,7 @@ const ContentWithImage = ({
   return (
     <section
       ref={ref}
-      className={`py-20 px-6 md:px-16 bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden ${containerStyle}`}
+      className={`px-6 md:px-16 bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden ${containerStyle}`}
     >
       <div
         className={`flex flex-col md:flex-row items-center justify-between gap-10 md:gap-14 ${
