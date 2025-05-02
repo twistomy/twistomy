@@ -20,7 +20,7 @@ const Contact = () => {
 
     try {
       const res = await fetch(
-        "https://njevaennoxinixwqvptc.functions.supabase.co/send-contact-message",
+        "https://njevaennoxinixwqvptc.functions.supabase.co/send-contact-email",
         {
           method: "POST",
           headers: {
