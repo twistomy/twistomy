@@ -21,10 +21,43 @@ const newsData = [
   {
     title:
       "Twistomy Wins 1st Place at CU Denver Senior Capstone Design Showcase",
-    description: `We’re proud to share that Twistomy earned 1st place out of 50+ engineering projects across all departments at the 2024 CU Denver College of Engineering, Design, and Computing Senior Capstone Design Showcase!
-      From conceptualization to the final prototype and provisional patent filing, this milestone represents 10 months of rigorous design, testing, and iteration to develop the Continent Ostomy Device. A heartfelt thank you to our mentors, Dr. Steven Moulton, and Sara Fidanza at Children’s Hospital Colorado for their unwavering support and guidance throughout the project.
-      Winning this capstone competition is just the beginning. We’re excited to carry this momentum forward as we continue refining the device and advancing toward clinical and commercial impact in the years to come.
-      For more information, visit here.`,
+    // description: `We’re proud to share that Twistomy earned 1st place out of 50+ engineering projects across all departments at the 2024 CU Denver College of Engineering, Design, and Computing Senior Capstone Design Showcase!
+    //   From conceptualization to the final prototype and provisional patent filing, this milestone represents 10 months of rigorous design, testing, and iteration to develop the Continent Ostomy Device. A heartfelt thank you to our mentors, Dr. Steven Moulton, and Sara Fidanza at Children’s Hospital Colorado for their unwavering support and guidance throughout the project.
+    //   Winning this capstone competition is just the beginning. We’re excited to carry this momentum forward as we continue refining the device and advancing toward clinical and commercial impact in the years to come.
+    //   For more information, visit here.`,
+    description: (
+      <>
+        <p>
+          We’re proud to share that Twistomy earned 1st place out of 50+
+          engineering projects across all departments at the 2024 CU Denver
+          College of Engineering, Design, and Computing Senior Capstone Design
+          Showcase!
+        </p>
+        <p>
+          From conceptualization to the final prototype and provisional patent
+          filing, this milestone represents 10 months of rigorous design,
+          testing, and iteration to develop the Continent Ostomy Device. A
+          heartfelt thank you to our mentors, Dr. Steven Moulton, and Sara
+          Fidanza at Children’s Hospital Colorado for their unwavering support
+          and guidance throughout the project.
+        </p>
+        <p>
+          Winning this capstone competition is just the beginning. We’re excited
+          to carry this momentum forward as we continue refining the device and
+          advancing toward clinical and commercial impact in the years to come.
+          For more information, visit{" "}
+          <a
+            href="https://ucdengineeringnews.com/2024/05/23/college-of-engineering-design-and-computings-graduating-seniors-show-out-at-the-senior-capstone-design-expo/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 underline hover:text-blue-700"
+          >
+            here
+          </a>
+          .
+        </p>
+      </>
+    ),
     images: [Capstone1, Capstone2, Capstone3],
   },
   {

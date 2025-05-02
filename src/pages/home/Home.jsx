@@ -12,12 +12,12 @@ const Home = () => {
   return (
     <main className="bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300">
       {/* Hero Section */}
-      <section className="bg-black text-white min-h-[93vh]">
+      <section className="bg-black text-white min-h-[93vh] md:h-[93vh]">
         <HeroSection />
 
         {/* Bouncing Arrow */}
         <div
-          className="hidden md:block absolute z-20 bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
+          className="absolute z-20 bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
           onClick={() => {
             const detailsSection = document.getElementById("details-section");
             if (detailsSection) {
