@@ -1,9 +1,10 @@
 import HeroSection from "../../components/hero/HeroSection";
 import chevronDown from "/icons/arrows/chevron-down.svg";
-import TwistomyGenCapWafer from "../../assets/pictures/Twistomy_gen_cap_wafer.png";
-import Twist from "../../assets/pictures/Twisted.png";
-import ContinentAssembly from "../../assets/pictures/continent_assembly_exploded.png";
-import ExcretoryAssembly from "../../assets/pictures/excretory_assembly_collapsed.png";
+import ContCollap from "../../assets/pictures/model/ContinentAssemblyCollapsed_DDW.png";
+import ContExplode from "../../assets/pictures/model/ContinentAssemblyExploded_DDW.png";
+import ExcreCollap from "../../assets/pictures/model/ExcretoryAssemblyCollapsed_DDW.png";
+import ExcreExplode from "../../assets/pictures/model/ExcretoryAssemblyExploded_DDW.png";
+import Twist from "../../assets/pictures/model/Twistomy_cap_wafer_LIVE.png";
 import Table from "../../assets/pictures/Table.png";
 import ContentWithImage from "../../components/contentWithImage/ContentWithImage";
 import SectionDivider from "../../components/sectionDivider/sectionDivider";
@@ -12,12 +13,12 @@ const Home = () => {
   return (
     <main className="bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300">
       {/* Hero Section */}
-      <section className="bg-black text-white min-h-[93vh] md:h-[93vh]">
+      <section className="bg-black text-white min-h-[93vhz] md:h-[93vh]">
         <HeroSection />
 
         {/* Bouncing Arrow */}
         <div
-          className="absolute z-20 bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
+          className="hidden md:block absolute z-20 bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
           onClick={() => {
             const detailsSection = document.getElementById("details-section");
             if (detailsSection) {
@@ -37,7 +38,7 @@ const Home = () => {
         <SectionDivider text="About Us" />
         {/* Details Section */}
         <ContentWithImage
-          imageSrc={TwistomyGenCapWafer}
+          imageSrc={ContCollap}
           imageAlt="About Twistomy™"
           content={[
             { type: "header", text: "About Twistomy™" },
@@ -53,7 +54,7 @@ const Home = () => {
         />
 
         <ContentWithImage
-          imageSrc={TwistomyGenCapWafer}
+          imageSrc={ContExplode}
           imageAlt="The Problem"
           content={[
             { type: "header", text: "The Problem" },
@@ -69,7 +70,7 @@ const Home = () => {
         />
         <SectionDivider text="Our Solution" />
         <ContentWithImage
-          imageSrc={ContinentAssembly}
+          imageSrc={ExcreExplode}
           imageAlt="The Twistomy™ Solution"
           content={[
             { type: "header", text: "The Twistomy™ Solution" },
@@ -99,7 +100,7 @@ const Home = () => {
           textStyle="text-center md:text-left"
         />
         <ContentWithImage
-          imageSrc={ExcretoryAssembly}
+          imageSrc={ExcreCollap}
           imageAlt="Seamless Integration & User Control"
           content={[
             { type: "header", text: "Seamless Integration & User Control" },

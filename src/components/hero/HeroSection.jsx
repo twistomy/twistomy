@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import chevronDown from "/icons/arrows/chevron-down.svg";
 
 /* ---------- helper hook: media query ---------- */
 const useIsMobile = () => {
@@ -229,10 +230,12 @@ function DesktopHero() {
       <div className="absolute z-10 flex flex-col md:w-2/5 h-full justify-between md:justify-center text-center md:text-left py-20 md:left-10">
         <h1 className="text-6xl font-bold mb-4 text-base-pink">Twistomy</h1>
         <p className="text-xl text-black">
-          You put it in yout body and it does really cool stuff for people who
-          need it. Oh yeah, its also super simple and easy to use. I mean, cmon,
-          its obvious this thing rocks. Call us right now and get your inestine
-          valve today!
+          Transforming ostomy care with cutting-edge engineering, Twistomy
+          replaces bulky, unreliable hardware with a sleek, modular valve that
+          fits naturally into daily life. Our patent-pending design opens
+          effortlessly for cleaning and inspection, seals securely for total
+          confidence, and adapts as your body changes—giving you freedom to
+          move, work, and play without compromise.
         </p>
       </div>
 
@@ -241,17 +244,13 @@ function DesktopHero() {
   );
 }
 
-/* --------------------------------------------  MOBILE HERO -------------------------------------------- */
+/* --------------  MOBILE HERO -------------- */
 function MobileHero() {
   const canvasRef = useRef(null);
   const mixerRef = useRef(null);
   const rootRef = useRef(null);
   const cameraRef = useRef(null);
   const clipDur = useRef(1);
-
-  /* spin flag & clock */
-  const spinRef = useRef(false);
-  const clockRef = useRef(new THREE.Clock());
 
   /* 1. scene ---------------------------------------------------------------- */
   useEffect(() => {
@@ -266,7 +265,7 @@ function MobileHero() {
       0.1,
       1000
     );
-    camera.position.set(0, 0, 50); // start close
+    camera.position.set(0, 0, 50); // pulled back so model fits
     camera.lookAt(0, 0, 0);
     cameraRef.current = camera;
 
@@ -275,11 +274,11 @@ function MobileHero() {
     renderer.setSize(canvas.clientWidth, canvas.clientHeight);
     canvas.appendChild(renderer.domElement);
 
-    /* simple light */
+    /* hemispheric light */
     scene.add(new THREE.HemisphereLight(0xffffff, 0x555555, 1.5));
 
-    /* load model and clips */
-    new GLTFLoader().load("/model/finalContinentAnimated.glb", (gltf) => {
+    /* load model & clips */
+    new GLTFLoader().load("/model/finalContinentAnimated_z0.glb", (gltf) => {
       const root = gltf.scene;
       root.scale.setScalar(0.14);
       scene.add(root);
@@ -293,26 +292,19 @@ function MobileHero() {
         0
       );
 
-      /* play all clips, let setTime() drive them */
+      /* play all clips; we’ll scrub with setTime() */
       gltf.animations.forEach((clip) => {
-        const a = mixer.clipAction(clip);
-        a.clampWhenFinished = true;
-        a.setLoop(THREE.LoopOnce);
-        a.play();
-        a.paused = false;
+        const act = mixer.clipAction(clip);
+        act.clampWhenFinished = true;
+        act.setLoop(THREE.LoopOnce);
+        act.play();
+        act.paused = false;
       });
 
-      /* render loop */
+      /* render loop (no spin) */
       (function render() {
         requestAnimationFrame(render);
-
-        /* add spin if flag is on */
-        const dt = clockRef.current.getDelta();
-        if (spinRef.current && rootRef.current) {
-          rootRef.current.rotation.y += dt * 0.4; // 0.4 rad/s
-        }
-
-        mixer.update(0); // evaluate at current time
+        mixer.update(0); // evaluate current scrubbed time
         renderer.render(scene, camera);
       })();
     });
@@ -335,9 +327,9 @@ function MobileHero() {
   /* 2. scroll-scrub --------------------------------------------------------- */
   useEffect(() => {
     const sticky = canvasRef.current.parentElement; // .sticky
-    const section = sticky.parentElement; // 400 vh wrapper
+    const section = sticky.parentElement; // 400-vh wrapper
 
-    const SPAN = 3; // 3 vh span
+    const SPAN = 3; // view-heights span
     const vh = window.innerHeight;
     const startY = section.offsetTop;
 
@@ -346,32 +338,35 @@ function MobileHero() {
 
     const onScroll = () => {
       const y = window.scrollY;
-      const p = THREE.MathUtils.clamp((y - startY) / (vh * SPAN), 0, 1);
+      /* progress 0-1 only while we’re inside the wrapper */
+      const pRaw = (y - startY) / (vh * SPAN);
+      const p = THREE.MathUtils.clamp(pRaw, 0, 1);
 
-      /* scrub explode */
-      if (mixerRef.current) mixerRef.current.setTime(p * clipDur.current);
-
-      /* camera zoom + lift */
-      if (cameraRef.current) {
-        cameraRef.current.position.z = THREE.MathUtils.lerp(50, 10, p);
-        cameraRef.current.position.y = THREE.MathUtils.lerp(0, 0, p);
-        cameraRef.current.position.x = THREE.MathUtils.lerp(0, 0, p); // pan left
+      /* ---------- drive every action individually ---------- */
+      if (mixerRef.current) {
+        mixerRef.current._actions.forEach((act) => {
+          const dur = act.getClip().duration;
+          act.time = p * dur; // never exceeds its own duration
+          act.paused = true; // freeze pose; mixer.update(0) will sample
+        });
       }
 
-      /* tilt while scrubbing (disabled once spin starts) */
-      if (!spinRef.current && rootRef.current) {
-        rootRef.current.position.z = THREE.MathUtils.lerp(0, -60, p); // lift
-        rootRef.current.rotation.y = p * Math.PI * 0.1; // ≈ 6 deg
-        rootRef.current.rotation.z = p * Math.PI * 0.5; // face camera
+      /* camera: keep z fixed but lift a bit */
+      if (cameraRef.current) {
+        cameraRef.current.position.y = THREE.MathUtils.lerp(0.4, 0.7, p);
+      }
+
+      /* root position / rotation while scrubbing */
+      if (rootRef.current) {
+        rootRef.current.position.z = THREE.MathUtils.lerp(0, -40, p);
+        rootRef.current.rotation.z = p * Math.PI * 0.5;
+        rootRef.current.rotation.y = p * Math.PI * 0.1;
       }
 
       /* text fades */
       if (topText) topText.style.opacity = Math.max(1 - p * 3, 0); // fast
       if (botText)
         botText.style.opacity = THREE.MathUtils.clamp((p - 0.8) * 10, 0, 1);
-
-      /* toggle spin only near absolute end/start */
-      spinRef.current = p >= 0.99;
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -381,38 +376,36 @@ function MobileHero() {
 
   /* 3. JSX ------------------------------------------------------------------ */
   return (
-    <section className="relative w-full h-[400vh] z-0">
+    <section className="relative w-full h-[500vh] z-0">
       <div className="sticky top-0 h-screen w-full">
         <div ref={canvasRef} className="w-full h-full" />
 
         {/* top intro */}
         <div
           className="hero-text-top absolute inset-0 flex flex-col items-center
-                        justify-center text-center pointer-events-none z-10"
+                        justify-between py-32 text-center pointer-events-none z-10 h-[93vh]"
         >
-          <h1 className="text-4xl font-bold mb-4 text-base-pink">Twistomy</h1>
+          <h1 className="text-6xl font-bold mb-4 text-base-pink">Twistomy</h1>
           <p className="text-lg px-6">Scroll to reveal what’s inside …</p>
         </div>
 
-        {/* bottom header & paragraph (starts invisible) */}
+        {/* bottom paragraph (fades in near end) */}
         <div
-          className="hero-text-bottom absolute h-full flex flex-col justify-between inset-x-0 top-0 py-20 text-center
-                        pointer-events-none z-10"
+          className="hero-text-bottom absolute inset-0 flex flex-col items-center justify-between pt-32 pb-10 text-center pointer-events-none z-10 h-[93vh]"
           style={{ opacity: 0 }}
         >
-          <h2 className="text-8xl font-bold mb-4 text-base-pink">Twistomy</h2>
-
-          <p className="text-3xl px-6 text-white">
-            Twistomy’s modular design opens for easy inspection and maintenance,
-            ensuring reliability when you need it most.
-          </p>
+          <h1 className="text-6xl font-bold mb-4 text-base-pink">Twistomy</h1>
+          <div className="flex flex-col items-center justify-center">
+            <p className="text-lg px-6 text-white">
+              Twistomy’s modular design opens for easy inspection and
+              maintenance, ensuring reliability when you need it most.
+            </p>
+            <p className="px-6 text-base-light pt-10">
+              Find out below how twistomy is innovating ostomy care with
+              cutting-edge engineering and design.
+            </p>
+          </div>
         </div>
-        {/* <div
-          className="hero-text-bottom absolute inset-x-0 bottom-8 text-center
-                        pointer-events-none z-10"
-          style={{ opacity: 0 }}
-        >
-        </div> */}
       </div>
     </section>
   );
