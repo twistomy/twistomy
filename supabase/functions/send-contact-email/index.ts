@@ -8,7 +8,7 @@ const supabase = createClient(
 );
 
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "*", // Or replace * with your domain for stricter control
+  "Access-Control-Allow-Origin": "*", // Replace with your domain if needed
   "Access-Control-Allow-Headers":
     "authorization, x-client-info, apikey, content-type",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
@@ -20,8 +20,34 @@ serve(async (req) => {
     return new Response("ok", { headers: corsHeaders });
   }
 
-  const { name, email, phone, heard_about, subject, message } =
-    await req.json();
+  // Ensure content type is JSON
+  const contentType = req.headers.get("content-type") || "";
+  if (!contentType.includes("application/json")) {
+    return new Response("Invalid content type", {
+      status: 400,
+      headers: corsHeaders,
+    });
+  }
+
+  let body;
+  try {
+    body = await req.json();
+  } catch (err) {
+    console.error("Invalid JSON:", err);
+    return new Response("Invalid JSON", {
+      status: 400,
+      headers: corsHeaders,
+    });
+  }
+
+  const { name, email, phone, heard_about, subject, message } = body;
+
+  if (!name || !email || !subject || !message) {
+    return new Response("Missing required fields", {
+      status: 400,
+      headers: corsHeaders,
+    });
+  }
 
   // Store in Supabase
   const { error: dbError } = await supabase
@@ -37,7 +63,7 @@ serve(async (req) => {
   }
 
   // Send via Resend
-  const emailRes = await fetch("https://api.resend.com/emails", {
+  const resendRes = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -58,8 +84,8 @@ serve(async (req) => {
     }),
   });
 
-  if (!emailRes.ok) {
-    const error = await emailRes.text();
+  if (!resendRes.ok) {
+    const error = await resendRes.text();
     console.error("Resend error:", error);
     return new Response("Email send failed", {
       status: 500,
