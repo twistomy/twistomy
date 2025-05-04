@@ -230,12 +230,8 @@ function DesktopHero() {
       <div className="absolute z-10 flex flex-col md:w-2/5 h-full justify-between md:justify-center text-center md:text-left py-20 md:left-10">
         <h1 className="text-6xl font-bold mb-4 text-base-pink">Twistomy</h1>
         <p className="text-xl text-black">
-          Transforming ostomy care with cutting-edge engineering, Twistomy
-          replaces bulky, unreliable hardware with a sleek, modular valve that
-          fits naturally into daily life. Our patent-pending design opens
-          effortlessly for cleaning and inspection, seals securely for total
-          confidence, and adapts as your body changes—giving you freedom to
-          move, work, and play without compromise.
+        A novel continent ostomy device that restores confidence, dignity, and quality of life for
+ostomy patients.
         </p>
       </div>
 
