@@ -1,125 +1,44 @@
-import { useState } from "react";
-import { supabase } from "../../../supabaseClient";
+import React from "react";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    heard_about: "",
-    subject: "",
-    message: "",
-  });
-  const [submitted, setSubmitted] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const { error } = await supabase
-        .from("contact_messages")
-        .insert([formData]);
-
-      if (error) throw error;
-
-      setShowPopup(true); // ✅ show the popup
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        heard_about: "",
-        subject: "",
-        message: "",
-      });
-
-      setTimeout(() => setShowPopup(false), 3000); // auto-close in 3 sec
-    } catch (err) {
-      console.error("Submission error:", err);
-      alert("Something went wrong. Please try again later.");
-    }
-  };
-
   return (
-    <main className="min-h-screen content-center bg-white dark:bg-gray-900 text-black p-5 text-center">
-      {showPopup && (
-        <div className="fixed top-5 right-5 z-50 bg-base-pink text-white px-4 py-2 rounded shadow-lg transition-all">
-          Message sent. Thank you for reaching out!
-        </div>
-      )}
-
-      <section className="text-center mb-8">
-        <h1 className="text-6xl md:text-3xl font-bold dark:text-white">
-          Contact Us
+    <main className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-6">
+      <section className="max-w-md w-full text-center bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-8 space-y-6">
+        <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white">
+          Get in Touch
         </h1>
-        <p className="text-gray-600 dark:text-base-pink-dark text-3xl md:text-xl mt-4">
-          We would love to hear from you!
+        <p className="text-gray-600 dark:text-gray-300 text-lg">
+          We'd love to hear from you! Whether you have a question, feedback, or just want to say hello,
+          drop us an email and we'll get back to you as soon as possible.
         </p>
-      </section>
-
-      <section className="mb-8">
-        <form onSubmit={handleSubmit} className="space-y-4 max-w-xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input
-              name="name"
-              onChange={handleChange}
-              placeholder="Name (required)"
-              required
-              className="bg-white text-black border p-4 md:p-2 text-xl md:text-base rounded w-full"
-            />
-            <input
-              name="email"
-              onChange={handleChange}
-              placeholder="Email (required)"
-              type="email"
-              required
-              className="bg-white text-black border p-4 md:p-2 text-xl md:text-base rounded w-full"
-            />
-            <input
-              name="phone"
-              onChange={handleChange}
-              placeholder="Phone"
-              className="bg-white text-black border p-4 md:p-2 text-xl md:text-base rounded w-full"
-            />
-            <select
-              name="heard_about"
-              onChange={handleChange}
-              required
-              className="bg-white text-black border p-4 md:p-2 text-xl md:text-base rounded w-full"
-            >
-              <option value="">--How did you hear about us?--</option>
-              <option value="Google">Google</option>
-              <option value="Friend">Friend</option>
-              <option value="Ad">Ad</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          <input
-            name="subject"
-            onChange={handleChange}
-            placeholder="Subject (required)"
-            required
-            className="bg-white text-black border p-4 md:p-2 text-xl md:text-base rounded w-full"
-          />
-          <textarea
-            name="message"
-            onChange={handleChange}
-            placeholder="Your message (required)"
-            required
-            rows={5}
-            className="bg-white text-black border p-4 md:p-2 text-xl md:text-base rounded w-full"
-          />
-          <button
-            type="submit"
-            className="bg-base-pink text-white py-2 px-4 rounded hover:bg-white border hover:border-base-pink hover:text-base-pink transition duration-300"
+        <div className="flex items-center justify-center space-x-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-6 h-6 text-base-pink"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-            Send Message
-          </button>
-        </form>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 8h18a2 2 0 002-2V8a2 2 0 00-2-2H3a2 2 0 00-2 2v6a2 2 0 002 2z"
+            />
+          </svg>
+          <a
+            href="mailto:teamtwistomy@gmail.com"
+            className="text-xl font-medium text-base-pink hover:underline"
+          >
+            teamtwistomy@gmail.com
+          </a>
+        </div>
+        <button
+          onClick={() => window.location = 'mailto:teamtwistomy@gmail.com'}
+          className="mt-4 inline-block bg-base-pink text-white py-2 px-4 rounded-lg hover:bg-base-pink-dark transition"
+        >
+          Send Us an Email
+        </button>
       </section>
     </main>
   );
