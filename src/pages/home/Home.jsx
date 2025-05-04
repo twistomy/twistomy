@@ -44,7 +44,7 @@ const Home = () => {
             { type: "header", text: "About Twistomy™" },
             {
               type: "paragraph",
-              text: "Twistomy was created by biomedical engineers Devon Horton (B.S), Lily Williams (B.S), and Danielle Piper (B.S) in collaboration with GI professionals Dr. Steven Moulton (M.D.) and Sara Fidanza (CNS-BC, CPNP-BC) from Children’s Hospital Colorado (CHCO) who were frustrated with the burdens of current ostomy care solutions for adult and pediatric ostomy patients and the lack of improvement in the ostomy care space. Together, through the University of Colorado Denver’s Senior Capstone Program, they developed Twistomy, a continent ostomy device that has the potential to revolutionize the current standard of ostomy care.",
+              text: "Twistomy™ was born from a collaboration between former bioengineering students—Lily Williams (BS), Devon Horton (BS), and Danielle Piper (BS)—at the University of Colorado Anschutz and gastrointestinal specialists Dr. Steven Moulton (MD) and Sara Fidanza (CNS-BC, CPNP-BC) at Children’s Hospital Colorado. Together, our team developed a patented, discreet, and low-profile continent ostomy device that empowers patients to regain control of their bowel habits. Twistomy™ is designed to minimize peristomal complications, reduce the physical burden of traditional ostomies, and support a more confident, active lifestyle by enhancing overall quality of life.",
             },
           ]}
           imageOnLeft={true}
@@ -91,7 +91,7 @@ const Home = () => {
             { type: "header", text: "Core Features" },
             {
               type: "paragraph",
-              text: "The device is composed of a soft flexible inner ring and twistable thin plastic sleeve that sit within the stoma channeling waste. The low-profile external housing unit twists the conduit shut to prevent leakage and odor escape until the user decides to untwist it for excretion.",
+              text: "The device is composed of a soft flexible sleeve and internal ring that sit within the stoma channeling waste. The low-profile external housing unit twists the sleeve close to prevent leakage and odor scape until the user decides to untwist it for excretion.",
             },
           ]}
           imageOnLeft={false}
@@ -106,7 +106,7 @@ const Home = () => {
             { type: "header", text: "Seamless Integration & User Control" },
             {
               type: "paragraph",
-              text: "The low-profile external housing unit attaches to standard stoma wafer using a compatible “clip-on” mechanism. When it is time to evacuate one’s stoma, a user attaches an ostomy pouch to the housing unit and untwists the conduit, opening the channel for fecal output in a controlled and effective manner. When finished, a user twists the conduit closed, discards the ostomy pouch, and recaps the housing unit.",
+              text: "When it is time to empty one’s bowels, a pouch adapter lightly threads onto the external housing unit and an ostomy pouch clips on to the pouch adapter. The housing unit twists counterclockwise into the pouch adapter, untwisting the seal to create an open channel for the flow of waste into the pouch. When finished, the primary housing unit is twisted clockwise to reseal the channel. The used pouch is discarded, the adapter cleaned and stored for future use, and housing unit is recapped.",
             },
           ]}
           imageOnLeft={true}
