@@ -98,7 +98,6 @@ function DesktopHero() {
           m.castShadow = true;
           m.receiveShadow = true;
 
-          // Override red materials
           const mat = m.material;
           if (
             mat.color &&
@@ -106,11 +105,11 @@ function DesktopHero() {
             mat.color.g < 0.3 &&
             mat.color.b < 0.3
           ) {
-            mat.color.set("#888888"); // gray
+            mat.color.set("#888888");
+            mat.needsUpdate = true;
           }
 
           mat.flatShading = false;
-          mat.needsUpdate = true;
         }
       });
       scene.add(root);
@@ -254,15 +253,11 @@ function MobileHero() {
       root.scale.setScalar(0.14);
 
       root.traverse((m) => {
-        if (m.isMesh) {
+        if (m.isMesh && m.material && m.material.color) {
           const mat = m.material;
-          if (
-            mat.color &&
-            mat.color.r > 0.6 &&
-            mat.color.g < 0.3 &&
-            mat.color.b < 0.3
-          ) {
-            mat.color.set("#888888"); // gray
+          if (mat.color.r > 0.6 && mat.color.g < 0.3 && mat.color.b < 0.3) {
+            mat.color.set("#888888");
+            mat.needsUpdate = true;
           }
         }
       });
@@ -273,24 +268,23 @@ function MobileHero() {
       const mixer = new THREE.AnimationMixer(root);
       mixerRef.current = mixer;
 
-      clipDur.current = gltf.animations.reduce(
-        (m, c) => Math.max(m, c.duration),
-        0
-      );
+      const clips = gltf.animations;
+      clipDur.current = clips.reduce((max, c) => Math.max(max, c.duration), 0);
 
-      gltf.animations.forEach((clip) => {
-        const act = mixer.clipAction(clip);
-        act.clampWhenFinished = true;
-        act.setLoop(THREE.LoopOnce);
-        act.play();
-        act.paused = false;
+      clips.forEach((clip) => {
+        const action = mixer.clipAction(clip);
+        action.clampWhenFinished = true;
+        action.setLoop(THREE.LoopOnce);
+        action.play();
+        action.paused = true;
       });
 
-      (function render() {
-        requestAnimationFrame(render);
+      const renderLoop = () => {
+        requestAnimationFrame(renderLoop);
         mixer.update(0);
         renderer.render(scene, camera);
-      })();
+      };
+      renderLoop();
     });
 
     const onResize = () => {
