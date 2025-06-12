@@ -1,4 +1,3 @@
-import React from "react";
 import HeadShotWithText from "../../components/headShotWithText/headShotWithText";
 import DrMoulton from "../../assets/pictures/headshots/Dr_moulton.jpg";
 import SaraFidanza from "../../assets/pictures/headshots/Sara_Fidanza.png";

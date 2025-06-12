@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { motion, useAnimation, useInView } from "framer-motion";
 
@@ -28,7 +28,7 @@ const ContentWithImage = ({
       }
       textControls.start({ x: 0, opacity: 1, transition: { duration: 0.8 } });
     }
-  }, [isInView]);
+  }, [imageControls, imageSrc, isInView, textControls]);
 
   const renderContent = () =>
     content.map((item, index) => {

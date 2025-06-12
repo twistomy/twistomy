@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Footer() {
   const navLinks = [
     { text: "Home", link: "/" },
@@ -39,7 +37,7 @@ export default function Footer() {
         {/* Contact Info */}
         <div className="text-sm flex flex-col items-center md:items-end space-y-4">
           <p>
-            Mail:{' '}
+            Mail:{" "}
             <a
               href="mailto:info@twistomy.com"
               className="hover:text-base-pink transition font-medium"

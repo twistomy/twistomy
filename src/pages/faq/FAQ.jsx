@@ -1,5 +1,3 @@
-import React from "react";
-
 const faqs = [
   {
     question: "How do you know the device prevents leakage and odor?",
@@ -8,7 +6,8 @@ const faqs = [
   },
   {
     question: "What wafer is TwistomyTM currently compatible with?",
-    answer: "Twistomy™ is currently compatible with the Coloplast SenSura® Mio Convex Wafer, a widely used and trusted option among ostomates. Future versions may support additional wafer systems as we continue development and testing.",
+    answer:
+      "Twistomy™ is currently compatible with the Coloplast SenSura® Mio Convex Wafer, a widely used and trusted option among ostomates. Future versions may support additional wafer systems as we continue development and testing.",
   },
   {
     question: "How often do I need to empty the device?",

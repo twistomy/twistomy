@@ -1,8 +1,7 @@
-/* HeroSection.jsx ------------------------------------------------------ */
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import chevronDown from "/icons/arrows/chevron-down.svg";
+// import chevronDown from "/icons/arrows/chevron-down.svg";
 
 /* ---------- helper hook: media query ---------- */
 const useIsMobile = () => {
@@ -28,6 +27,7 @@ function DesktopHero() {
   const clock = useRef(new THREE.Clock());
   const explodedRef = useRef(false);
   const [loaded, setLoaded] = useState(false);
+  console.log("loaded", loaded);
 
   useEffect(() => {
     const scene = new THREE.Scene();

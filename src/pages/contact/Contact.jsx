@@ -1,5 +1,3 @@
-import React from "react";
-
 const Contact = () => {
   return (
     <main className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-6">
@@ -8,8 +6,9 @@ const Contact = () => {
           Get in Touch
         </h1>
         <p className="text-gray-600 dark:text-gray-300 text-lg">
-          We'd love to hear from you! Whether you have a question, feedback, or just want to say hello,
-          drop us an email and we'll get back to you as soon as possible.
+          We&apos;d love to hear from you! Whether you have a question,
+          feedback, or just want to say hello, drop us an email and we&apos;ll
+          get back to you as soon as possible.
         </p>
         <div className="flex items-center justify-center space-x-3">
           <svg
@@ -34,7 +33,7 @@ const Contact = () => {
           </a>
         </div>
         <button
-          onClick={() => window.location = 'mailto:teamtwistomy@gmail.com'}
+          onClick={() => (window.location = "mailto:teamtwistomy@gmail.com")}
           className="mt-4 inline-block bg-base-pink text-white py-2 px-4 rounded-lg hover:bg-base-pink-dark transition"
         >
           Send Us an Email

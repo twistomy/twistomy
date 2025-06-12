@@ -11,6 +11,7 @@ import Team from "./pages/team/Team";
 import News from "./pages/news/News";
 import Faq from "./pages/faq/FAQ";
 import Contact from "./pages/contact/Contact";
+import AdminPage from "./pages/admin/Admin";
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -40,6 +41,7 @@ function App() {
         <Route path="/news" element={<News />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
       <Footer />
     </Router>
