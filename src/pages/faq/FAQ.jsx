@@ -5,7 +5,7 @@ const faqs = [
       "We’ve conducted extensive benchtop testing using simulated waste, artificial bowels, and a high-fidelity stoma mannequin to ensure TwistomyTM is both air- and effluent-tight. Preliminary verification testing was performed using well-defined protocols focused on effluent- airtightness—no leakage was observed over 12 hours after equilibration and no air leakage was detected over a four-hour test period, confirming the effluent- and airtight integrity of the device.",
   },
   {
-    question: "What wafer is TwistomyTM currently compatible with?",
+    question: "What wafer is Twistomy™ currently compatible with?",
     answer:
       "Twistomy™ is currently compatible with the Coloplast SenSura® Mio Convex Wafer, a widely used and trusted option among ostomates. Future versions may support additional wafer systems as we continue development and testing.",
   },
