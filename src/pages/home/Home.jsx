@@ -5,7 +5,7 @@ import Img_01_C from "../../assets/pictures/model/01_c.png";
 import Img_02_A from "../../assets/pictures/model/02_a.png";
 import Img_03_A from "../../assets/pictures/model/03_a.png";
 import Img_04_B from "../../assets/pictures/model/04_b.png";
-import Competition from "../../assets/pictures/competition.png";
+import Competition from "../../assets/pictures/Competition.png";
 import ContentWithImage from "../../components/contentWithImage/ContentWithImage";
 import SectionDivider from "../../components/sectionDivider/sectionDivider";
 
