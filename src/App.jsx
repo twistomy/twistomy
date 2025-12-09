@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./App.css";
+import TrackVisitors from "./utils/TrackVisitors";
 
 // import pages
 import Header from "./components/header/Header";
@@ -31,6 +32,7 @@ function App() {
 
   return (
     <Router>
+      <TrackVisitors />
       <Header darkMode={darkMode} setDarkMode={setDarkMode} />
       <Routes>
         <Route path="" element={<Home />} />

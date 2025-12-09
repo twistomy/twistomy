@@ -1,11 +1,11 @@
 import HeroSection from "../../components/hero/HeroSection";
 import chevronDown from "/icons/arrows/chevron-down.svg";
-import ContCollap from "../../assets/pictures/model/ContinentAssemblyCollapsed_DDW.png";
-import ContExplode from "../../assets/pictures/model/ContinentAssemblyExploded_DDW.png";
-import ExcreCollap from "../../assets/pictures/model/ExcretoryAssemblyCollapsed_DDW.png";
-import ExcreExplode from "../../assets/pictures/model/ExcretoryAssemblyExploded_DDW.png";
-import Twist from "../../assets/pictures/model/Twistomy_cap_wafer_LIVE.png";
-import Table from "../../assets/pictures/Table.png";
+import Img_01_A from "../../assets/pictures/model/01_a.png";
+import Img_01_C from "../../assets/pictures/model/01_c.png";
+import Img_02_A from "../../assets/pictures/model/02_a.png";
+import Img_03_A from "../../assets/pictures/model/03_a.png";
+import Img_04_B from "../../assets/pictures/model/04_b.png";
+import Competition from "../../assets/pictures/competition.png";
 import ContentWithImage from "../../components/contentWithImage/ContentWithImage";
 import SectionDivider from "../../components/sectionDivider/sectionDivider";
 
@@ -38,7 +38,7 @@ const Home = () => {
         <SectionDivider text="About Us" />
         {/* Details Section */}
         <ContentWithImage
-          imageSrc={ContCollap}
+          imageSrc={Img_01_A}
           imageAlt="About Twistomy™"
           content={[
             { type: "header", text: "About Twistomy™" },
@@ -54,7 +54,7 @@ const Home = () => {
         />
 
         <ContentWithImage
-          imageSrc={ContExplode}
+          imageSrc={Img_02_A}
           imageAlt="The Problem"
           content={[
             { type: "header", text: "The Problem" },
@@ -70,7 +70,7 @@ const Home = () => {
         />
         <SectionDivider text="Our Solution" />
         <ContentWithImage
-          imageSrc={ExcreExplode}
+          imageSrc={Img_01_C}
           imageAlt="The Twistomy™ Solution"
           content={[
             { type: "header", text: "The Twistomy™ Solution" },
@@ -85,7 +85,7 @@ const Home = () => {
           textStyle="text-center md:text-left"
         />
         <ContentWithImage
-          imageSrc={Twist}
+          imageSrc={Img_03_A}
           imageAlt="Core Features"
           content={[
             { type: "header", text: "Core Features" },
@@ -100,7 +100,7 @@ const Home = () => {
           textStyle="text-center md:text-left"
         />
         <ContentWithImage
-          imageSrc={ExcreCollap}
+          imageSrc={Img_04_B}
           imageAlt="Seamless Integration & User Control"
           content={[
             { type: "header", text: "Seamless Integration & User Control" },
@@ -116,7 +116,7 @@ const Home = () => {
         />
         <SectionDivider text="Competition" />
         <ContentWithImage
-          imageSrc={Table}
+          imageSrc={Competition}
           imageAlt="What makes Twistomy™ different?"
           content={[
             { type: "header", text: "What makes Twistomy™ different?" },
